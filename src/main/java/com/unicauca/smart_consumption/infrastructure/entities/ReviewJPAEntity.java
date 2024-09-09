@@ -13,7 +13,7 @@ public class ReviewJPAEntity {
 
     @ManyToOne
     @JoinColumn(name = "producto_id")
-    private Product producto;
+    private ProductJPAEntity producto;
 
     @Column(name = "calificacion")
     private int calificacion;
@@ -23,5 +23,5 @@ public class ReviewJPAEntity {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private User usuario;
+    private UserJPAEntity usuario;
 }

@@ -13,7 +13,7 @@ public class OfferJPAEntity {
 
     @ManyToOne
     @JoinColumn(name = "producto_id")
-    private Product producto;
+    private ProductJPAEntity producto;
 
     @Column(name = "fecha_inicio")
     private LocalDateTime fechaInicio;
