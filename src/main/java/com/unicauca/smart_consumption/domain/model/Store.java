@@ -1,12 +1,98 @@
 package com.unicauca.smart_consumption.domain.model;
 
+import com.unicauca.smart_consumption.domain.model.valueobject.Category;
+import com.unicauca.smart_consumption.domain.model.valueobject.Location;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Store {
     private int id;
-    private String nombre;
-    private String direccion;
-    private List<Product> productos;
-    private List<Offer> ofertas;
-    private City ubicacion;
+    private String name;
+    private List<Product> products;
+    private List<Offer> offers;
+    private City city;
+
+
+    public Store(int id, String name, City city) {
+        this.id = id;
+        this.name = name;
+        this.city = city;
+        this.products = new ArrayList<>();
+        this.offers = new ArrayList<>();
+    }
+
+    public void addProduct(Product product) {
+        if (Objects.nonNull(product) && !products.contains(product)) {
+            products.add(product);
+        }
+    }
+
+    public void removeProduct(Product product) {
+        products.remove(product);
+    }
+
+    public List<Product> getProducts() {
+        return new ArrayList<>(products);
+    }
+
+    public boolean hasProduct(Product product) {
+        return products.contains(product);
+    }
+
+    public List<Product> getSustainableProducts() {
+        List<Product> sustainableProducts = new ArrayList<>();
+        for (Product product : products) {
+            if (product.isSustainable()) {
+                sustainableProducts.add(product);
+            }
+        }
+        return sustainableProducts;
+    }
+
+    public List<Product> getProductsByCategory(Category category) {
+        List<Product> productsByCategory = new ArrayList<>();
+        for (Product product : products) {
+            if (product.isInCategory(category)) {
+                productsByCategory.add(product);
+            }
+        }
+        return productsByCategory;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", city=" + city +
+                ", products=" + products +
+                '}';
+    }
 }
