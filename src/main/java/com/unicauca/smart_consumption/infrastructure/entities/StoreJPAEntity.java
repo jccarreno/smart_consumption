@@ -1,7 +1,4 @@
 package com.unicauca.smart_consumption.infrastructure.entities;
-import com.unicauca.smart_consumption.domain.model.City;
-import com.unicauca.smart_consumption.domain.model.Offer;
-import com.unicauca.smart_consumption.domain.model.Product;
 import jakarta.persistence.*;
 
 import java.util.List;
