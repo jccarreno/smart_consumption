@@ -2,6 +2,7 @@ package com.unicauca.smart_consumption.domain.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class User {
     private int id;
@@ -12,7 +13,7 @@ public class User {
     private City ubication;
 
     public void addReview(Review review) {
-        if (review != null && !reviews.contains(review)) {
+        if (Objects.nonNull(review) && !reviews.contains(review)) {
             reviews.add(review);
         }
     }

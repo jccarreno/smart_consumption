@@ -2,6 +2,7 @@ package com.unicauca.smart_consumption.domain.model;
 
 import com.unicauca.smart_consumption.domain.model.valueobject.Rating;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 public class Review {
@@ -44,10 +45,11 @@ public class Review {
     }
 
     public void updateComment(String newComment) {
-        if (newComment != null && !newComment.trim().isEmpty()) {
+        if (Objects.nonNull(newComment) && !newComment.trim().isEmpty()) {
             this.comment = newComment;
         }
     }
+
 
     public boolean isCommentLengthValid() {
         return this.comment.length() >= 10 && this.comment.length() <= 500;
@@ -82,17 +84,11 @@ public class Review {
         return rating;
     }
 
-    public void setRating(Rating rating) {
-        this.rating = rating;
-    }
 
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 
     public LocalDateTime getDate() {
         return date;

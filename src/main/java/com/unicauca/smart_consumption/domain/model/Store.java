@@ -5,6 +5,7 @@ import com.unicauca.smart_consumption.domain.model.valueobject.Location;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Store {
     private int id;
@@ -23,7 +24,7 @@ public class Store {
     }
 
     public void addProduct(Product product) {
-        if (product != null && !products.contains(product)) {
+        if (Objects.nonNull(product) && !products.contains(product)) {
             products.add(product);
         }
     }

@@ -7,7 +7,7 @@ public class Location {
     private final String country;
 
     public Location(String address, String country) {
-        if (address == null || address.trim().isEmpty() || country == null || country.trim().isEmpty()) {
+        if (!Objects.nonNull(address) || address.trim().isEmpty() || country == null || country.trim().isEmpty()) {
             throw new IllegalArgumentException("The address, city, and country cannot be null or empty.");
         }
         this.address = address;
@@ -19,8 +19,6 @@ public class Location {
         return address;
     }
 
-
-
     public String getCountry() {
         return country;
     }
@@ -28,7 +26,7 @@ public class Location {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!Objects.nonNull(o) || getClass() != o.getClass()) return false;
         Location location = (Location) o;
         return Objects.equals(address, location.address) &&
                 Objects.equals(country, location.country);

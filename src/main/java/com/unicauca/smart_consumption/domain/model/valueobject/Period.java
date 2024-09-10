@@ -8,7 +8,7 @@ public class Period {
     private final LocalDate endDate;
 
     public Period(LocalDate startDate, LocalDate endDate) {
-        if (startDate == null || endDate == null) {
+        if (!Objects.nonNull(startDate) || endDate == null) {
             throw new IllegalArgumentException("Start date and end date cannot be null.");
         }
         if (endDate.isBefore(startDate)) {
@@ -33,7 +33,7 @@ public class Period {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!Objects.nonNull(o) || getClass() != o.getClass()) return false;
         Period period = (Period) o;
         return startDate.equals(period.startDate) && endDate.equals(period.endDate);
     }

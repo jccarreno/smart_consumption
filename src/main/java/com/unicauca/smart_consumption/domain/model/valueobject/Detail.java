@@ -7,7 +7,7 @@ public class Detail {
     private final String specifications;
 
     public Detail(String description, String specifications) {
-        if (description == null || description.trim().isEmpty()) {
+        if (!Objects.nonNull(description) || description.trim().isEmpty()) {
             throw new IllegalArgumentException("The description cannot be null or empty.");
         }
         this.description = description;
@@ -25,7 +25,7 @@ public class Detail {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!Objects.nonNull(o) || getClass() != o.getClass()) return false;
         Detail detail = (Detail) o;
         return Objects.equals(description, detail.description) &&
                 Objects.equals(specifications, detail.specifications);

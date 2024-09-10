@@ -6,7 +6,7 @@ public class Category {
     private final String name;
 
     public Category(String name) {
-        if (name == null || name.isEmpty()) {
+        if (!Objects.nonNull(name) || name.isEmpty()) {
             throw new IllegalArgumentException("The category name cannot be null or empty");
         }
         this.name = name;
@@ -19,7 +19,7 @@ public class Category {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!Objects.nonNull(o) || getClass() != o.getClass()) return false;
         Category category = (Category) o;
         return name.equals(category.name);
     }

@@ -3,6 +3,7 @@ package com.unicauca.smart_consumption.domain.model;
 import com.unicauca.smart_consumption.domain.model.valueobject.Period;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 public class Offer {
@@ -14,13 +15,13 @@ public class Offer {
     private double discountedPrice;
 
     public Offer(int id, String description, Period validityPeriod, Product product, double discountPercentage) {
-        if (description == null || description.trim().isEmpty()) {
+        if (!Objects.nonNull(description) || description.trim().isEmpty()) {
             throw new IllegalArgumentException("Description cannot be null or empty.");
         }
-        if (validityPeriod == null) {
+        if (!Objects.nonNull(validityPeriod)) {
             throw new IllegalArgumentException("Validity period cannot be null.");
         }
-        if (product == null) {
+        if (!Objects.nonNull(product)) {
             throw new IllegalArgumentException("Product cannot be null.");
         }
         if (discountPercentage < 0 || discountPercentage > 100) {

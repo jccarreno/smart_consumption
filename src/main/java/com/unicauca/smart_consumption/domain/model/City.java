@@ -10,10 +10,10 @@ public class City {
     private Location location;
 
     public City(int id, String name, Location location) {
-        if (name == null || name.trim().isEmpty()) {
+        if (!Objects.nonNull(name) || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty.");
         }
-        if (location == null) {
+        if (!Objects.nonNull(location)) {
             throw new IllegalArgumentException("Location cannot be null.");
         }
         this.id = id;
@@ -37,7 +37,7 @@ public class City {
     }
 
     public void setName(String name) {
-        if (name == null || name.trim().isEmpty()) {
+        if (!Objects.nonNull(name) || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty.");
         }
         this.name = name;
@@ -48,7 +48,7 @@ public class City {
     }
 
     public void setLocation(Location location) {
-        if (location == null) {
+        if (!Objects.nonNull(location)) {
             throw new IllegalArgumentException("Location cannot be null.");
         }
         this.location = location;
