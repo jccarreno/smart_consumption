@@ -19,8 +19,8 @@ public class Product {
     private SustainabilityCriteria sustainabilityCriteria;
     private ProductStatus status;
     private double price;
-    private List<Review> reviews;
-    private List<Store> stores;
+    private final List<Review> reviews;
+    private final List<Store> stores;
 
     public Product(int id, String name, Category category, Detail detail,
                    SustainabilityCriteria sustainabilityCriteria, double price) {

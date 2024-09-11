@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 public class OfferJPAEntity {
     @Id

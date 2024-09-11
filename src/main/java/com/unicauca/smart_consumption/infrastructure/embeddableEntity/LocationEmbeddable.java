@@ -8,7 +8,6 @@ import lombok.*;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class LocationEmbeddable {
     private String address;
     private String country;

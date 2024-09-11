@@ -9,9 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ReviewJPARepository  extends JpaRepository<ReviewJPARepository, Long> {
-    List<ReviewJPAEntity> findByProduct(ProductJPAEntity product);
-    List<ReviewJPAEntity> findByUser(UserJPAEntity user);
-    @Query("SELECT r FROM Review r WHERE r.rating >= :minRating")
-    List<ReviewJPAEntity> findReviewsWithMinimumRating(int minRating);
+public interface ReviewJPARepository  extends JpaRepository<ReviewJPAEntity, Long> {
+//    List<ReviewJPAEntity> findByProduct(ProductJPAEntity product);
+//    List<ReviewJPAEntity> findByUser(UserJPAEntity user);
+//    List<ReviewJPAEntity> findReviewsWithMinimumRating(int minRating);
 }

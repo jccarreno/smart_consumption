@@ -6,27 +6,34 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import lombok.*;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "review")
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 public class ReviewJPAEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NonNull
+
     private String comment;
-    @NonNull
+
     private LocalDateTime datePublication;
+
     @Enumerated(EnumType.STRING)
     private Rating rating;
+
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", nullable = false)
     private ProductJPAEntity product;
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private UserJPAEntity user;
 }

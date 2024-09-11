@@ -10,7 +10,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 public class StoreJPAEntity {
     @Id

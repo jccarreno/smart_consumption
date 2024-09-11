@@ -8,7 +8,6 @@ import lombok.*;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class DetailEmbeddable {
     private  String description;
     private  String specifications;

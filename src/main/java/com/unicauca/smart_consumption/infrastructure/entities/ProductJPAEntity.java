@@ -13,15 +13,13 @@ import java.util.List;
 @Table(name = "product")
 @Getter
 @Setter
-@ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 public class ProductJPAEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NonNull
     private String name;
 
     @Embedded
@@ -34,9 +32,8 @@ public class ProductJPAEntity {
     private SustainabilityCriteriaEmbeddable sustainabilityCriteria;
 
     @Enumerated(EnumType.STRING)
-    private ProductStatus status = ProductStatus.AVAILABLE;
+    private ProductStatus status;
 
-    @NonNull
     private double price;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)

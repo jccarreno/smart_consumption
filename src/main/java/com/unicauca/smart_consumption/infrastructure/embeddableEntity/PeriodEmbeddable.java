@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class PeriodEmbeddable {
     private LocalDate startDate;
     private LocalDate endDate;
