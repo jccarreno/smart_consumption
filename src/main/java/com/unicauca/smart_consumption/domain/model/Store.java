@@ -1,8 +1,6 @@
 package com.unicauca.smart_consumption.domain.model;
 
-import com.unicauca.smart_consumption.domain.model.valueobject.Category;
-import com.unicauca.smart_consumption.domain.model.valueobject.Location;
-
+import com.unicauca.smart_consumption.domain.model.valueObject.Category;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,13 +12,21 @@ public class Store {
     private List<Offer> offers;
     private City city;
 
-
     public Store(int id, String name, City city) {
         this.id = id;
         this.name = name;
         this.city = city;
         this.products = new ArrayList<>();
         this.offers = new ArrayList<>();
+    }
+
+    public void updateStore(String name, City city) {
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name;
+        }
+        if (city != null) {
+            this.city = city;
+        }
     }
 
     public void addProduct(Product product) {
@@ -61,29 +67,16 @@ public class Store {
         return productsByCategory;
     }
 
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public City getCity() {
         return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
     }
 
     @Override
