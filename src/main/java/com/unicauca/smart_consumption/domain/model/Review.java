@@ -1,6 +1,6 @@
 package com.unicauca.smart_consumption.domain.model;
 
-import com.unicauca.smart_consumption.domain.model.valueobject.Rating;
+import com.unicauca.smart_consumption.domain.model.valueObject.Rating;
 import java.time.LocalDateTime;
 import java.util.Objects;
 

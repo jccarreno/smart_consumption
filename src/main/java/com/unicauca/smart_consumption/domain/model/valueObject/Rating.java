@@ -1,4 +1,4 @@
-package com.unicauca.smart_consumption.domain.model.valueobject;
+package com.unicauca.smart_consumption.domain.model.valueObject;
 
 public enum Rating {
     TERRIBLE(1),

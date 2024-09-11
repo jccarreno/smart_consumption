@@ -1,13 +1,14 @@
 package com.unicauca.smart_consumption.domain.model;
 
-import com.unicauca.smart_consumption.domain.model.valueobject.Category;
-import com.unicauca.smart_consumption.domain.model.valueobject.Detail;
-import com.unicauca.smart_consumption.domain.model.valueobject.ProductStatus;
-import com.unicauca.smart_consumption.domain.model.valueobject.SustainabilityCriteria;
+import com.unicauca.smart_consumption.domain.model.valueObject.Category;
+import com.unicauca.smart_consumption.domain.model.valueObject.Detail;
+import com.unicauca.smart_consumption.domain.model.valueObject.ProductStatus;
+import com.unicauca.smart_consumption.domain.model.valueObject.SustainabilityCriteria;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Product {
@@ -19,7 +20,7 @@ public class Product {
         private ProductStatus status;
         private double price;
         private List<Review> reviews;
-
+        private List<Store> stores;
         public Product(int id, String name, Category category, Detail detail,
                        SustainabilityCriteria sustainabilityCriteria, double price) {
             this.id = id;
@@ -30,6 +31,7 @@ public class Product {
             this.sustainabilityCriteria = sustainabilityCriteria;
             this.price = price;
             this.reviews = new ArrayList<>();
+            this.stores = new ArrayList<>();
         }
 
         public void updateCategory(Category newCategory) {
@@ -60,35 +62,58 @@ public class Product {
             this.status = newStatus;
         }
 
+        public void addStore(Store store) {
+            if (Objects.nonNull(store) && !stores.contains(store)) {
+                stores.add(store);
+            }
+        }
+
+        public void removeStore(Store store) {
+            stores.remove(store);
+        }
+
+        public boolean isAvailableInStore(Store store) {
+            return stores.contains(store);
+        }
+
+        public List<Store> getStoresByCity(City city) {
+            List<Store> storesByCity = new ArrayList<>();
+            for (Store store : stores) {
+                if (store.getCity().equals(city)) {
+                    storesByCity.add(store);
+                }
+            }
+            return storesByCity;
+        }
         public void applyDiscount(double percentage) {
             if (percentage > 0 && percentage <= 100) {
                 this.price -= this.price * (percentage / 100);
             }
         }
 
-    public double calculateAverageRating() {
-        List<Review> reviews = this.getReviews();
-        if (reviews.isEmpty()) {
-            return 0.0;
+        public double calculateAverageRating() {
+            List<Review> reviews = this.getReviews();
+            if (reviews.isEmpty()) {
+                return 0.0;
+            }
+            double sum = 0.0;
+            for (Review review : reviews) {
+                sum += review.getRating().getValue();
+            }
+            return sum / reviews.size();
         }
-        double sum = 0.0;
-        for (Review review : reviews) {
-            sum += review.getRating().getValue();
+
+        public List<Review> getReviewsSortedByDate() {
+            List<Review> sortedReviews = new ArrayList<>(reviews);
+            sortedReviews.sort(Comparator.comparing(Review::getDate));
+            return sortedReviews;
         }
-        return sum / reviews.size();
-    }
 
-    public List<Review> getReviewsSortedByDate() {
-        List<Review> sortedReviews = new ArrayList<>(reviews);
-        sortedReviews.sort(Comparator.comparing(Review::getDate));
-        return sortedReviews;
-    }
-
-    private List<Review> getReviews() {
+        private List<Review> getReviews() {
             return this.reviews;
-    }
+        }
 
-    public int getId() {
+        public int getId() {
             return id;
         }
 
@@ -132,6 +157,4 @@ public class Product {
                     ", price=" + price +
                     '}';
         }
-
-
     }

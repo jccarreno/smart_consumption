@@ -1,8 +1,6 @@
 package com.unicauca.smart_consumption.domain.model;
 
-import com.unicauca.smart_consumption.domain.model.valueobject.Category;
-import com.unicauca.smart_consumption.domain.model.valueobject.Location;
-
+import com.unicauca.smart_consumption.domain.model.valueObject.Category;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

@@ -3,32 +3,35 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+import lombok.*;
+
 @Entity
 @Table(name = "store")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class StoreJPAEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "nombre")
-    private String nombre;
-
-    @Column(name = "direccion")
-    private String direccion;
+    private String name;
 
     @ManyToMany
     @JoinTable(
             name = "store_product",
             joinColumns = @JoinColumn(name = "store_id"),
-            inverseJoinColumns = @JoinColumn(name = "producto_id")
+            inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private List<ProductJPAEntity> productos;
+    private List<ProductJPAEntity> products;
 
     @OneToMany
-    @JoinColumn(name = "oferta_id")
-    private List<OfferJPAEntity> ofertas;
+    @JoinColumn(name = "offer_id")
+    private List<OfferJPAEntity> offers;
 
     @ManyToOne
-    @JoinColumn(name = "ubicacion_id")
-    private CityJPAEntitiy ubicacion;
+    @JoinColumn(name = "city_id")
+    private CityJPAEntitiy city;
 }

@@ -1,9 +1,9 @@
 package com.unicauca.smart_consumption.infrastructure.persistance;
 
 
-import com.unicauca.smart_consumption.domain.model.valueobject.Category;
-import com.unicauca.smart_consumption.domain.model.valueobject.Rating;
-import com.unicauca.smart_consumption.domain.model.valueobject.SustainabilityCriteria;
+import com.unicauca.smart_consumption.domain.model.valueObject.Category;
+import com.unicauca.smart_consumption.domain.model.valueObject.Rating;
+import com.unicauca.smart_consumption.domain.model.valueObject.SustainabilityCriteria;
 import com.unicauca.smart_consumption.infrastructure.entities.ProductJPAEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

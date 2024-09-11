@@ -1,24 +1,24 @@
 package com.unicauca.smart_consumption.domain.model;
 
-import com.unicauca.smart_consumption.domain.model.valueobject.Location;
+
 
 import java.util.Objects;
 
 public class City {
     private int id;
     private String name;
-    private Location location;
+    private String department;
 
-    public City(int id, String name, Location location) {
+    public City(int id, String name, String department) {
         if (!Objects.nonNull(name) || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty.");
         }
-        if (!Objects.nonNull(location)) {
-            throw new IllegalArgumentException("Location cannot be null.");
+        if (!Objects.nonNull(department)) {
+            throw new IllegalArgumentException("department cannot be null.");
         }
         this.id = id;
         this.name = name;
-        this.location = location;
+        this.department = department;
     }
 
     public int getId() {
@@ -43,31 +43,31 @@ public class City {
         this.name = name;
     }
 
-    public Location getLocation() {
-        return location;
+    public String getdepartment() {
+        return department;
     }
 
-    public void setLocation(Location location) {
-        if (!Objects.nonNull(location)) {
-            throw new IllegalArgumentException("Location cannot be null.");
+    public void setdepartment(String department) {
+        if (!Objects.nonNull(department)) {
+            throw new IllegalArgumentException("department cannot be null.");
         }
-        this.location = location;
+        this.department = department;
     }
 
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!Objects.nonNull(o) || getClass() != o.getClass()) return false;
         City city = (City) o;
         return id == city.id &&
                 name.equals(city.name) &&
-                location.equals(city.location);
+                department.equals(city.department);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, location);
+        return Objects.hash(id, name, department);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class City {
         return "City{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", location=" + location +
+                ", department=" + department +
                 '}';
     }
 }

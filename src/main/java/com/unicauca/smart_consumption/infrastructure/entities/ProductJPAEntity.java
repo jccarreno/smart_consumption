@@ -1,30 +1,48 @@
 package com.unicauca.smart_consumption.infrastructure.entities;
+import com.unicauca.smart_consumption.domain.model.valueObject.ProductStatus;
+import com.unicauca.smart_consumption.infrastructure.embeddableEntity.CategoryEmbeddable;
+import com.unicauca.smart_consumption.infrastructure.embeddableEntity.DetailEmbeddable;
+import com.unicauca.smart_consumption.infrastructure.embeddableEntity.SustainabilityCriteriaEmbeddable;
 import jakarta.persistence.*;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "product")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class ProductJPAEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "categoria")
-    private String categoria;
+    @NonNull
+    private String name;
 
-    @Column(name = "sostenibilidad")
-    private double sostenibilidad;
+    @Embedded
+    private CategoryEmbeddable category;
 
-    @Column(name = "descripcion")
-    private String descripcion;
+    @Embedded
+    private DetailEmbeddable detail;
 
-    @Column(name = "disponible")
-    private boolean disponible;
+    @Embedded
+    private SustainabilityCriteriaEmbeddable sustainabilityCriteria;
 
-    @Column(name = "precio_base")
-    private double precioBase;
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status = ProductStatus.AVAILABLE;
 
-    @ManyToMany(mappedBy = "productos")
+    @NonNull
+    private double price;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private List<ReviewJPAEntity> reviews = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "products")
     private List<StoreJPAEntity> stores;
 }

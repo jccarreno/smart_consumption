@@ -1,11 +1,17 @@
 package com.unicauca.smart_consumption.infrastructure.entities;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
 
 @Entity
 @Table(name = "user")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class UserJPAEntity {
 
     @Id
@@ -29,4 +35,5 @@ public class UserJPAEntity {
     @ManyToOne
     @JoinColumn(name = "ubicacion_id")
     private CityJPAEntitiy ubicacion;
+
 }
