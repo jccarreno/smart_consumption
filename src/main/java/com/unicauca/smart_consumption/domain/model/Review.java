@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 
+import java.time.LocalDateTime;
+import java.util.Objects;
+
 public class Review {
     private Long id;
     private User user;
@@ -38,57 +41,38 @@ public class Review {
         return this.user.equals(user);
     }
 
-    public void updateRating(Rating newRating) {
+    public void updateReview(Rating newRating, String newComment) {
         if (newRating != null) {
             this.rating = newRating;
         }
-    }
-
-    public void updateComment(String newComment) {
-        if (Objects.nonNull(newComment) && !newComment.trim().isEmpty()) {
+        if (newComment != null && !newComment.trim().isEmpty()) {
             this.comment = newComment;
         }
     }
-
 
     public boolean isCommentLengthValid() {
         return this.comment.length() >= 10 && this.comment.length() <= 500;
     }
 
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Product getProduct() {
         return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     public Rating getRating() {
         return rating;
     }
 
-
     public String getComment() {
         return comment;
     }
-
 
     public LocalDateTime getDate() {
         return date;

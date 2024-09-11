@@ -12,138 +12,141 @@ import java.util.Objects;
 
 
 public class Product {
-        private int id;
-        private String name;
-        private Category category;
-        private Detail detail;
-        private SustainabilityCriteria sustainabilityCriteria;
-        private ProductStatus status;
-        private double price;
-        private List<Review> reviews;
-        private List<Store> stores;
-        public Product(int id, String name, Category category, Detail detail,
-                       SustainabilityCriteria sustainabilityCriteria, double price) {
-            this.id = id;
+    private int id;
+    private String name;
+    private Category category;
+    private Detail detail;
+    private SustainabilityCriteria sustainabilityCriteria;
+    private ProductStatus status;
+    private double price;
+    private List<Review> reviews;
+    private List<Store> stores;
+
+    public Product(int id, String name, Category category, Detail detail,
+                   SustainabilityCriteria sustainabilityCriteria, double price) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.detail = detail;
+        this.status = ProductStatus.AVAILABLE;
+        this.sustainabilityCriteria = sustainabilityCriteria;
+        this.price = price;
+        this.reviews = new ArrayList<>();
+        this.stores = new ArrayList<>();
+    }
+
+    public void updateProduct(String name, Category category, Detail detail,
+                              SustainabilityCriteria sustainabilityCriteria, ProductStatus status, double price) {
+        if (name != null && !name.trim().isEmpty()) {
             this.name = name;
+        }
+        if (category != null) {
             this.category = category;
+        }
+        if (detail != null) {
             this.detail = detail;
-            this.status = ProductStatus.AVAILABLE;
+        }
+        if (sustainabilityCriteria != null) {
             this.sustainabilityCriteria = sustainabilityCriteria;
+        }
+        if (status != null) {
+            this.status = status;
+        }
+        if (price > 0) {
             this.price = price;
-            this.reviews = new ArrayList<>();
-            this.stores = new ArrayList<>();
         }
+    }
 
-        public void updateCategory(Category newCategory) {
-            this.category = newCategory;
+    public void addStore(Store store) {
+        if (Objects.nonNull(store) && !stores.contains(store)) {
+            stores.add(store);
         }
+    }
 
-        public void updateDetail(Detail newDetail) {
-            this.detail = newDetail;
-        }
+    public void removeStore(Store store) {
+        stores.remove(store);
+    }
 
-        public void updateSustainabilityCriteria(SustainabilityCriteria newCriteria) {
-            this.sustainabilityCriteria = newCriteria;
-        }
+    public boolean isAvailableInStore(Store store) {
+        return stores.contains(store);
+    }
 
-        public boolean isSustainable() {
-            return this.sustainabilityCriteria.getSustainabilityScore() > 75;
-        }
-
-        public boolean isInCategory(Category category) {
-            return this.category.equals(category);
-        }
-
-        public boolean matchesDetail(Detail detail) {
-            return this.detail.equals(detail);
-        }
-
-        public void updateStatus(ProductStatus newStatus) {
-            this.status = newStatus;
-        }
-
-        public void addStore(Store store) {
-            if (Objects.nonNull(store) && !stores.contains(store)) {
-                stores.add(store);
+    public List<Store> getStoresByCity(City city) {
+        List<Store> storesByCity = new ArrayList<>();
+        for (Store store : stores) {
+            if (store.getCity().equals(city)) {
+                storesByCity.add(store);
             }
         }
+        return storesByCity;
+    }
 
-        public void removeStore(Store store) {
-            stores.remove(store);
+    public void applyDiscount(double percentage) {
+        if (percentage > 0 && percentage <= 100) {
+            this.price -= this.price * (percentage / 100);
         }
+    }
 
-        public boolean isAvailableInStore(Store store) {
-            return stores.contains(store);
+    public double calculateAverageRating() {
+        if (reviews.isEmpty()) {
+            return 0.0;
         }
+        double sum = 0.0;
+        for (Review review : reviews) {
+            sum += review.getRating().getValue();
+        }
+        return sum / reviews.size();
+    }
 
-        public List<Store> getStoresByCity(City city) {
-            List<Store> storesByCity = new ArrayList<>();
-            for (Store store : stores) {
-                if (store.getCity().equals(city)) {
-                    storesByCity.add(store);
-                }
-            }
-            return storesByCity;
-        }
-        public void applyDiscount(double percentage) {
-            if (percentage > 0 && percentage <= 100) {
-                this.price -= this.price * (percentage / 100);
-            }
-        }
+    public List<Review> getReviewsSortedByDate() {
+        List<Review> sortedReviews = new ArrayList<>(reviews);
+        sortedReviews.sort(Comparator.comparing(Review::getDate));
+        return sortedReviews;
+    }
 
-        public double calculateAverageRating() {
-            List<Review> reviews = this.getReviews();
-            if (reviews.isEmpty()) {
-                return 0.0;
-            }
-            double sum = 0.0;
-            for (Review review : reviews) {
-                sum += review.getRating().getValue();
-            }
-            return sum / reviews.size();
-        }
+    public int getId() {
+        return id;
+    }
 
-        public List<Review> getReviewsSortedByDate() {
-            List<Review> sortedReviews = new ArrayList<>(reviews);
-            sortedReviews.sort(Comparator.comparing(Review::getDate));
-            return sortedReviews;
-        }
+    public String getName() {
+        return name;
+    }
 
-        private List<Review> getReviews() {
-            return this.reviews;
-        }
+    public Category getCategory() {
+        return category;
+    }
 
-        public int getId() {
-            return id;
-        }
+    public Detail getDetail() {
+        return detail;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public SustainabilityCriteria getSustainabilityCriteria() {
+        return sustainabilityCriteria;
+    }
 
-        public void setName(String name){
-            this.name = name;
-        }
+    public ProductStatus getStatus() {
+        return status;
+    }
 
-        public Category getCategory() {
-            return category;
-        }
+    public double getPrice() {
+        return price;
+    }
 
-        public Detail getDetail() {
-            return detail;
-        }
+    public List<Review> getReviews() {
+        return reviews;
+    }
 
-        public SustainabilityCriteria getSustainabilityCriteria() {
-            return sustainabilityCriteria;
-        }
+    public List<Store> getStores() {
+        return stores;
+    }
 
-        public ProductStatus getStatus() {
-            return status;
-        }
+    public boolean isSustainable() {
+        return this.sustainabilityCriteria.getSustainabilityScore() > 75;
+    }
 
-        public double getPrice() {
-            return price;
-        }
+    public boolean isInCategory(Category category) {
+        return this.category.equals(category);
+    }
 
         @Override
         public String toString() {
