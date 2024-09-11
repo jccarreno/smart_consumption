@@ -12,14 +12,13 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class ReviewJPAEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NonNull
+
     private String comment;
-    @NonNull
+
     private LocalDateTime datePublication;
     @Enumerated(EnumType.STRING)
     private Rating rating;

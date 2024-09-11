@@ -8,7 +8,6 @@ import lombok.*;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class SustainabilityCriteriaEmbeddable {
     private double carbonFootprint;
     private double energyEfficiency;

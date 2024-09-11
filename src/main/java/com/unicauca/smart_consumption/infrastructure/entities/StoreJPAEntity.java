@@ -11,7 +11,6 @@ import lombok.*;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class StoreJPAEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

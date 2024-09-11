@@ -8,7 +8,6 @@ import lombok.*;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class CategoryEmbeddable {
     private  String name;
 }
