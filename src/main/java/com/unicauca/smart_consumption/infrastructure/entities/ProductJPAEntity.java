@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "product")
 @Getter
 @Setter
-@ToString
+@AllArgsConstructor
 @NoArgsConstructor
 public class ProductJPAEntity {
     @Id
@@ -32,7 +32,7 @@ public class ProductJPAEntity {
     private SustainabilityCriteriaEmbeddable sustainabilityCriteria;
 
     @Enumerated(EnumType.STRING)
-    private ProductStatus status = ProductStatus.AVAILABLE;
+    private ProductStatus status;
 
     private double price;
 

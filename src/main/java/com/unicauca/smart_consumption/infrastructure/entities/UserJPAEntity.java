@@ -6,33 +6,39 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_app")
 @Getter
 @Setter
-@ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserJPAEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "usuario")
-    private String usuario;
+    private String username;
 
-    @Column(name = "nombre")
-    private String nombre;
+    private String name;
 
     @ManyToMany
     @JoinTable(
             name = "user_offer",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "oferta_id")
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "offer_id")
     )
-    private List<OfferJPAEntity> listaSeguimiento;
+    private List<OfferJPAEntity> watchList;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_review",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "review_id")
+    )
+    private List<ReviewJPAEntity> reviewList;
 
     @ManyToOne
-    @JoinColumn(name = "ubicacion_id")
-    private CityJPAEntitiy ubicacion;
+    @JoinColumn(name = "city_id")
+    private CityJPAEntitiy city;
 
 }

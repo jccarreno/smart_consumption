@@ -8,8 +8,10 @@ import lombok.*;
 @Table(name = "offer")
 @Getter
 @Setter
-@ToString
-@RequiredArgsConstructor
+
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class OfferJPAEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

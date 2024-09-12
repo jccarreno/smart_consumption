@@ -9,8 +9,9 @@ import lombok.*;
 @Table(name = "store")
 @Getter
 @Setter
-@ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class StoreJPAEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

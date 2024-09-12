@@ -7,8 +7,10 @@ import lombok.*;
 @Table(name="city")
 @Getter
 @Setter
-@ToString
-@RequiredArgsConstructor
+
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class CityJPAEntitiy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
