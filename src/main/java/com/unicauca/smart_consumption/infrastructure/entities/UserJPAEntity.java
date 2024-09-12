@@ -9,7 +9,6 @@ import java.util.List;
 @Table(name = "user_app")
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserJPAEntity {

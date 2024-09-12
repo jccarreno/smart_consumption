@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Table(name = "review")
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReviewJPAEntity {

@@ -8,18 +8,19 @@ import lombok.*;
 @Table(name = "offer")
 @Getter
 @Setter
-@ToString
+
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class OfferJPAEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NonNull
+
     private String detail;
-    @NonNull
+
     private double discountPercentage;
-    @NonNull
+
     private double discountedPrice;
     @ManyToOne
     @JoinColumn(name = "product_id")
