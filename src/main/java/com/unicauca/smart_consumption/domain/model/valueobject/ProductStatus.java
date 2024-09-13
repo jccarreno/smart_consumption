@@ -1,4 +1,4 @@
-package com.unicauca.smart_consumption.domain.model.valueObject;
+package com.unicauca.smart_consumption.domain.model.valueobject;
 
 public enum ProductStatus {
     AVAILABLE,

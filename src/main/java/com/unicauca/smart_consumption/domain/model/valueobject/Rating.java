@@ -1,5 +1,8 @@
-package com.unicauca.smart_consumption.domain.model.valueObject;
+package com.unicauca.smart_consumption.domain.model.valueobject;
 
+import lombok.Getter;
+
+@Getter
 public enum Rating {
     TERRIBLE(1),
     POOR(2),
@@ -13,8 +16,5 @@ public enum Rating {
         this.value = value;
     }
 
-    public int getValue() {
-        return value;
-    }
 }
 

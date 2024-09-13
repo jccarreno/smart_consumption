@@ -4,7 +4,6 @@ package com.unicauca.smart_consumption.domain.model;
 
 import java.util.Objects;
 
-import java.util.Objects;
 
 public class City {
     private int id;

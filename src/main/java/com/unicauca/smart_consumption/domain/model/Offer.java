@@ -1,7 +1,8 @@
 package com.unicauca.smart_consumption.domain.model;
 
-import com.unicauca.smart_consumption.domain.model.valueObject.Period;
+import com.unicauca.smart_consumption.domain.model.valueobject.Period;
 
+import com.unicauca.smart_consumption.domain.product.Product;
 import java.time.LocalDate;
 import java.util.Objects;
 

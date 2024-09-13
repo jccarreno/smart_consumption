@@ -8,9 +8,9 @@ spring:
     name: smart_consumption
 
   datasource:
-    url: jdbc:postgresql://localhost:10001/postgres
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: admin
+    password: pass
 
   jpa:
     hibernate:
@@ -20,10 +20,6 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
 
-#  data:
-#    mongodb:
-#      host: localhost
-#      port: 10002
-#      database: smart_consumption
-#      username: mongo
-#      password: mongo
+  data:
+    mongodb:
+      uri: mongodb://admin:pass@localhost:27017/store?authSource=admin

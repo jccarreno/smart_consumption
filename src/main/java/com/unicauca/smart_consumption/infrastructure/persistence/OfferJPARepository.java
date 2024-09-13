@@ -1,4 +1,4 @@
-package com.unicauca.smart_consumption.infrastructure.persistance;
+package com.unicauca.smart_consumption.infrastructure.persistence;
 
 import com.unicauca.smart_consumption.infrastructure.entities.OfferJPAEntity;
 
