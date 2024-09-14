@@ -1,6 +1,6 @@
 package com.unicauca.smart_consumption.infrastructure.pattern.dto;
 
-import com.unicauca.smart_consumption.domain.model.valueobject.ProductStatus;
+import com.unicauca.smart_consumption.domain.valueobject.ProductStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

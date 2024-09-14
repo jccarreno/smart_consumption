@@ -1,22 +1,22 @@
 package com.unicauca.smart_consumption.domain.product;
 
-import com.unicauca.smart_consumption.domain.model.City;
-import com.unicauca.smart_consumption.domain.model.Review;
-import com.unicauca.smart_consumption.domain.model.Store;
-import com.unicauca.smart_consumption.domain.model.valueobject.Category;
-import com.unicauca.smart_consumption.domain.model.valueobject.Detail;
-import com.unicauca.smart_consumption.domain.model.valueobject.ProductStatus;
-import com.unicauca.smart_consumption.domain.model.valueobject.SustainabilityCriteria;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import com.unicauca.smart_consumption.domain.city.City;
+import com.unicauca.smart_consumption.domain.review.Review;
+import com.unicauca.smart_consumption.domain.store.Store;
+import com.unicauca.smart_consumption.domain.valueobject.Category;
+import com.unicauca.smart_consumption.domain.valueobject.Detail;
+import com.unicauca.smart_consumption.domain.valueobject.ProductStatus;
+import com.unicauca.smart_consumption.domain.valueobject.SustainabilityCriteria;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor

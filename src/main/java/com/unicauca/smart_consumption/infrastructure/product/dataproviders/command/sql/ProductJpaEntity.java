@@ -1,11 +1,11 @@
 package com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql;
 
-import com.unicauca.smart_consumption.domain.model.valueobject.ProductStatus;
+import com.unicauca.smart_consumption.domain.valueobject.ProductStatus;
 import com.unicauca.smart_consumption.infrastructure.embeddableEntity.CategoryEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.embeddableEntity.DetailEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.embeddableEntity.SustainabilityCriteriaEmbeddable;
-import com.unicauca.smart_consumption.infrastructure.entities.ReviewJPAEntity;
-import com.unicauca.smart_consumption.infrastructure.entities.StoreJPAEntity;
+import com.unicauca.smart_consumption.infrastructure.review.dataproviders.ReviewJPAEntity;
+import com.unicauca.smart_consumption.infrastructure.store.dataproviders.StoreJPAEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -16,15 +16,16 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 
 @Entity
