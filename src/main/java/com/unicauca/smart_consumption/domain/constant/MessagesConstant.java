@@ -12,6 +12,8 @@ public class MessagesConstant {
   public static final String IM001 = "IM001";
   public static final String IM002 = "IM002";
   public static final String IM003 = "IM003";
+  public static final String IM004 = "IM004";
+
 
   public static final String EM001 = "EM001";
   public static final String EM002 = "EM002";

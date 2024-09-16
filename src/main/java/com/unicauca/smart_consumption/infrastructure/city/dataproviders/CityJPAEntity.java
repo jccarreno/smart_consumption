@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class CityJPAEntitiy {
+public class CityJPAEntity {
     @Id
     private String id;
 

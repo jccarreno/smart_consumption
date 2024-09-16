@@ -21,7 +21,7 @@ public interface IReviewService {
      * @param review The {@link Review} with the updated information.
      * @return A {@link ResponseDto} containing the updated {@link Review} and an HTTP status code.
      */
-    ResponseDto<Review> updateReview(Long id, Review review);
+    ResponseDto<Review> updateReview(String id, Review review);
 
     /**
      * Deletes an existing review from the system.
@@ -29,7 +29,7 @@ public interface IReviewService {
      * @param id The ID of the {@link Review} to be deleted.
      * @return A {@link ResponseDto} indicating the result of the operation with an HTTP status code.
      */
-    ResponseDto<Void> deleteReview(Long id);
+    ResponseDto<Void> deleteReview(String id);
 
     /**
      * Finds a review in the system by its ID.
@@ -37,7 +37,7 @@ public interface IReviewService {
      * @param id The ID of the {@link Review} to be retrieved.
      * @return A {@link ResponseDto} containing the found {@link Review}, if it exists, and an HTTP status code.
      */
-    ResponseDto<Review> findReviewById(Long id);
+    ResponseDto<Review> findReviewById(String id);
 
     /**
      * Retrieves a list of all reviews in the system.

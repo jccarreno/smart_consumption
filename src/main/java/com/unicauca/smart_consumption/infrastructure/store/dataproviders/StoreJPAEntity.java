@@ -1,8 +1,9 @@
 package com.unicauca.smart_consumption.infrastructure.store.dataproviders;
 
-import com.unicauca.smart_consumption.infrastructure.city.dataproviders.CityJPAEntitiy;
+import com.unicauca.smart_consumption.infrastructure.city.dataproviders.CityJPAEntity;
 import com.unicauca.smart_consumption.infrastructure.offer.dataproviders.OfferJPAEntity;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql.ProductJpaEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -46,9 +47,9 @@ public class StoreJPAEntity {
   @JoinColumn(name = "offer_id")
   private List<OfferJPAEntity> offers;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "city_id")
-  private CityJPAEntitiy city;
+  private CityJPAEntity city;
 
   @PrePersist
   public void prePersist() {

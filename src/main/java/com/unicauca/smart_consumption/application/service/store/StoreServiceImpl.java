@@ -1,10 +1,10 @@
-package com.unicauca.smart_consumption.application.service.review;
+package com.unicauca.smart_consumption.application.service.store;
 
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.constant.MessagesConstant;
-import com.unicauca.smart_consumption.domain.review.Review;
-import com.unicauca.smart_consumption.domain.review.ports.in.IReviewService;
-import com.unicauca.smart_consumption.domain.review.ports.out.IReviewRepository;
+import com.unicauca.smart_consumption.domain.store.Store;
+import com.unicauca.smart_consumption.domain.store.ports.in.IStoreService;
+import com.unicauca.smart_consumption.domain.store.ports.out.IStoreRepository;
 import com.unicauca.smart_consumption.infrastructure.exception.BusinessRuleException;
 import com.unicauca.smart_consumption.infrastructure.messages.MessageLoader;
 import lombok.RequiredArgsConstructor;
@@ -14,31 +14,30 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class ReviewServiceImpl implements IReviewService {
+public class StoreServiceImpl implements IStoreService {
 
-    private final IReviewRepository reviewRepository;
+    private final IStoreRepository storeRepository;
 
     @Override
-    public ResponseDto<Review> createReview(Review review) {
-        Review createdReview = reviewRepository.createReview(review);
+    public ResponseDto<Store> createStore(Store store) {
+        Store createdStore = storeRepository.createStore(store);
         return new ResponseDto<>(HttpStatus.CREATED.value(),
-                MessageLoader.getInstance().getMessage(MessagesConstant.IM002), createdReview);
+                MessageLoader.getInstance().getMessage(MessagesConstant.IM002), createdStore);
     }
 
     @Override
-    public ResponseDto<Review> updateReview(String id, Review review) {
-        Review updatedReview = reviewRepository.updateReview(id, review);
+    public ResponseDto<Store> updateStore(String id, Store store) {
+        Store updatedStore = storeRepository.updateStore(id, store);
         return new ResponseDto<>(HttpStatus.OK.value(),
-                MessageLoader.getInstance().getMessage(MessagesConstant.IM003), updatedReview);
+                MessageLoader.getInstance().getMessage(MessagesConstant.IM003), updatedStore);
     }
 
     @Override
-    public ResponseDto<Void> deleteReview(String id) {
-        if (reviewRepository.findReviewById(id).isEmpty()) {
-            reviewRepository.deleteReview(id);
+    public ResponseDto<Void> deleteStore(String id) {
+        if (storeRepository.findStoreById(id).isEmpty()) {
+            storeRepository.deleteStore(id);
             return new ResponseDto<>(HttpStatus.NO_CONTENT.value(),
                     MessageLoader.getInstance().getMessage(MessagesConstant.IM004));
         } else {
@@ -48,18 +47,19 @@ public class ReviewServiceImpl implements IReviewService {
     }
 
     @Override
-    public ResponseDto<Review> findReviewById(final String id) {
-        Review review = reviewRepository.findReviewById(id)
+    public ResponseDto<Store> findStoreById(final String id) {
+        Store store = storeRepository.findStoreById(id)
                 .orElseThrow(() -> new BusinessRuleException(HttpStatus.BAD_REQUEST.value(), MessagesConstant.EM002,
                         MessageLoader.getInstance().getMessage(MessagesConstant.EM002, id)));
         return new ResponseDto<>(HttpStatus.OK.value(),
-                MessageLoader.getInstance().getMessage(MessagesConstant.IM001), review);
+                MessageLoader.getInstance().getMessage(MessagesConstant.IM001), store);
     }
 
     @Override
-    public ResponseDto<List<Review>> findAllReviews() {
-        List<Review> reviews = reviewRepository.findAllReviews();
+    public ResponseDto<List<Store>> findAllStores() {
+        List<Store> stores = storeRepository.findAllStores();
         return new ResponseDto<>(HttpStatus.OK.value(),
-                MessageLoader.getInstance().getMessage(MessagesConstant.IM001), reviews);
+                MessageLoader.getInstance().getMessage(MessagesConstant.IM001), stores);
     }
+
 }

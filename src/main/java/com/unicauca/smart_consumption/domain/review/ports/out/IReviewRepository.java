@@ -21,14 +21,14 @@ public interface IReviewRepository {
      * @param review The {@link Review} with the updated information.
      * @return The updated {@link Review}.
      */
-    Review updateReview(Long id, Review review);
+    Review updateReview(String id, Review review);
 
     /**
      * Deletes an existing review from the system.
      *
      * @param id The ID of the {@link Review} to be deleted.
      */
-    void deleteReview(Long id);
+    void deleteReview(String id);
 
     /**
      * Finds a review in the system by its ID.
@@ -36,7 +36,7 @@ public interface IReviewRepository {
      * @param id The ID of the {@link Review} to be retrieved.
      * @return An {@link Optional} containing the found {@link Review}, if it exists, or {@link Optional#empty()} if not found.
      */
-    Optional<Review> findReviewById(Long id);
+    Optional<Review> findReviewById(String id);
 
     /**
      * Retrieves a list of all reviews in the system.

@@ -8,7 +8,7 @@ import java.util.List;
 public interface IUserService {
 
     /**
-     * Creates a new user in the system.
+     * Creates a     new user in the system.
      *
      * @param user The {@link User} to be created.
      * @return A {@link ResponseDto} containing the created {@link User} object and an HTTP status code.

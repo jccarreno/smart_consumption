@@ -1,10 +1,10 @@
-package com.unicauca.smart_consumption.application.service.review;
+package com.unicauca.smart_consumption.application.service.user;
 
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.constant.MessagesConstant;
-import com.unicauca.smart_consumption.domain.review.Review;
-import com.unicauca.smart_consumption.domain.review.ports.in.IReviewService;
-import com.unicauca.smart_consumption.domain.review.ports.out.IReviewRepository;
+import com.unicauca.smart_consumption.domain.user.User;
+import com.unicauca.smart_consumption.domain.user.ports.in.IUserService;
+import com.unicauca.smart_consumption.domain.user.ports.out.IUserRepository;
 import com.unicauca.smart_consumption.infrastructure.exception.BusinessRuleException;
 import com.unicauca.smart_consumption.infrastructure.messages.MessageLoader;
 import lombok.RequiredArgsConstructor;
@@ -14,31 +14,29 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class ReviewServiceImpl implements IReviewService {
-
-    private final IReviewRepository reviewRepository;
+public class UserServiceImpl implements IUserService {
+    private final IUserRepository userRepository;
 
     @Override
-    public ResponseDto<Review> createReview(Review review) {
-        Review createdReview = reviewRepository.createReview(review);
+    public ResponseDto<User> createUser(User user) {
+        User createdUser = userRepository.createUser(user);
         return new ResponseDto<>(HttpStatus.CREATED.value(),
-                MessageLoader.getInstance().getMessage(MessagesConstant.IM002), createdReview);
+                MessageLoader.getInstance().getMessage(MessagesConstant.IM002), createdUser);
     }
 
     @Override
-    public ResponseDto<Review> updateReview(String id, Review review) {
-        Review updatedReview = reviewRepository.updateReview(id, review);
+    public ResponseDto<User> updateUser(String id, User user) {
+        User updatedUser = userRepository.updateUser(id, user);
         return new ResponseDto<>(HttpStatus.OK.value(),
-                MessageLoader.getInstance().getMessage(MessagesConstant.IM003), updatedReview);
+                MessageLoader.getInstance().getMessage(MessagesConstant.IM003), updatedUser);
     }
 
     @Override
-    public ResponseDto<Void> deleteReview(String id) {
-        if (reviewRepository.findReviewById(id).isEmpty()) {
-            reviewRepository.deleteReview(id);
+    public ResponseDto<Void> deleteUser(String id) {
+        if (userRepository.findUserById(id).isEmpty()) {
+            userRepository.deleteUser(id);
             return new ResponseDto<>(HttpStatus.NO_CONTENT.value(),
                     MessageLoader.getInstance().getMessage(MessagesConstant.IM004));
         } else {
@@ -48,18 +46,19 @@ public class ReviewServiceImpl implements IReviewService {
     }
 
     @Override
-    public ResponseDto<Review> findReviewById(final String id) {
-        Review review = reviewRepository.findReviewById(id)
+    public ResponseDto<User> findUserById(final String id) {
+        User user = userRepository.findUserById(id)
                 .orElseThrow(() -> new BusinessRuleException(HttpStatus.BAD_REQUEST.value(), MessagesConstant.EM002,
                         MessageLoader.getInstance().getMessage(MessagesConstant.EM002, id)));
         return new ResponseDto<>(HttpStatus.OK.value(),
-                MessageLoader.getInstance().getMessage(MessagesConstant.IM001), review);
+                MessageLoader.getInstance().getMessage(MessagesConstant.IM001), user);
     }
 
     @Override
-    public ResponseDto<List<Review>> findAllReviews() {
-        List<Review> reviews = reviewRepository.findAllReviews();
+    public ResponseDto<List<User>> findAllUsers() {
+        List<User> users = userRepository.findAllUsers();
         return new ResponseDto<>(HttpStatus.OK.value(),
-                MessageLoader.getInstance().getMessage(MessagesConstant.IM001), reviews);
+                MessageLoader.getInstance().getMessage(MessagesConstant.IM001), users);
     }
+
 }
