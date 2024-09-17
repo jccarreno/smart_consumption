@@ -1,9 +1,8 @@
 package com.unicauca.smart_consumption.domain.user;
 
 import com.unicauca.smart_consumption.domain.city.City;
-import com.unicauca.smart_consumption.domain.offer.Offer;
-import com.unicauca.smart_consumption.domain.review.Review;
 import com.unicauca.smart_consumption.domain.product.Product;
+import com.unicauca.smart_consumption.domain.review.Review;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +22,7 @@ public class User {
     private String username;
     private String name;
     private List<Review> reviews;
-    private List<Offer> watchList;
+    private List<Product> watchList;
     private City city;
 
     
@@ -46,6 +45,7 @@ public class User {
         }
     }
 
+    public void removedProduct(Product product) { watchList.remove(product); }
     public void removeReview(Review review) {
         reviews.remove(review);
     }
