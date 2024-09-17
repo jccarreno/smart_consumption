@@ -23,7 +23,7 @@ public class ProductCommandServiceImpl implements IProductCommandService{
         Product productNew = productCommandRepository.createProduct(product);
 
         return new ResponseDto<>(HttpStatus.CREATED.value(),
-            MessageLoader.getInstance().getMessage(MessagesConstant.IM001), productNew);
+            MessageLoader.getInstance().getMessage(MessagesConstant.IM002), productNew);
    
     }
 

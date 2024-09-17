@@ -25,11 +25,9 @@ import lombok.ToString;
 @AllArgsConstructor
 public class ProductPostgresDto {
   private String name;
-  private Category category;
+  private CategoryDto category;
   private Detail detail;
   private SustainabilityCriteria sustainabilityCriteria;
   private ProductStatus status;
   private double price;
-  private List<Review> reviews;
-  private List<Store> stores;
 }

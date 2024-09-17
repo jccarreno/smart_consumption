@@ -10,12 +10,13 @@ import lombok.ToString;
 @ToString
 public class Category {
 
-    private final String name;
-    public Category(String name) {
-        if (!Objects.nonNull(name) || name.isEmpty()) {
-            throw new IllegalArgumentException("The category name cannot be null or empty");
+    private final String categoryName;
+
+    public Category(String categoryName) {
+        if (!Objects.nonNull(categoryName) || categoryName.isEmpty()) {
+            throw new IllegalArgumentException("The category categoryName cannot be null or empty");
         }
-        this.name = name;
+        this.categoryName = categoryName;
     }
 
 }

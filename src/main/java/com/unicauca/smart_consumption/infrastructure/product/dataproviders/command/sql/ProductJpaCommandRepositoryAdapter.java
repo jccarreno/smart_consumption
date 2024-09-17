@@ -33,7 +33,7 @@ public class ProductJpaCommandRepositoryAdapter implements IProductCommandReposi
                 .orElseThrow(() -> new EntityNotFoundException("Product not found with id " + id));
 
         CategoryEmbeddable category = new CategoryEmbeddable();
-        category.setCategoryName(product.getCategory().getName());
+        category.setCategoryName(product.getCategory().getCategoryName());
 
         DetailEmbeddable detail = new DetailEmbeddable();
         detail.setDescription(product.getDetail().getDescription());
