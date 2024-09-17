@@ -71,4 +71,12 @@ public class StoreQueryWebApi {
         ).of();
     }
 
+    @PostMapping("/{storeId}/products")
+    public ResponseEntity<ResponseDto<StoreDto>>  addProductsToStore(@PathVariable String storeId, @RequestBody List<String> productIds) {
+        ResponseDto<Store> storeResponse = storeService.addProductsToStore(storeId, productIds);
+        StoreDto storeDto = storeMapper.toTarget(storeResponse.getData());
+        return new ResponseDto<>(storeResponse.getStatus(), storeResponse.getMessage(), storeDto).of();
+    }
+
+
 }

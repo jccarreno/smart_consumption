@@ -17,6 +17,6 @@ public class UserDto {
     private String username;
     private String name;
     private List<ReviewDto> reviews;
-    private List<OfferDto> watchList;
+    private List<ProductMongoDto> watchList;
     private CityDto city;
 }

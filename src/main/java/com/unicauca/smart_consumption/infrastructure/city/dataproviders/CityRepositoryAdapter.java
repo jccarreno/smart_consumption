@@ -29,13 +29,15 @@ public class CityRepositoryAdapter implements ICityRepository {
     public City updateCity(String id, City city) {
         return cityJPARepository.findById(id)
                 .map(cityEntity -> {
-                    cityEntity.setName(city.getName());
-                    cityEntity.setDepartment(city.getDepartment());
-                    CityJPAEntity updatedEntity = cityJPARepository.save(cityEntity);
-                    return cityJPAMapper.toDomain(updatedEntity);
+                    City domainCity = cityJPAMapper.toDomain(cityEntity);
+                    domainCity.update(city.getName(), city.getDepartment());
+                    CityJPAEntity updatedEntity = cityJPAMapper.toTarget(domainCity);
+                    cityJPARepository.save(updatedEntity);
+                    return domainCity;
                 })
                 .orElseThrow(() -> new EntityNotFoundException("City not found with id " + id));
     }
+
 
     @Override
     public void deleteCity(String id) {

@@ -44,4 +44,5 @@ public interface IUserRepository {
      * @return A list of all {@link User} objects.
      */
     List<User> findAllUsers();
+
 }

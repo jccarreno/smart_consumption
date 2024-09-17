@@ -1,11 +1,11 @@
 package com.unicauca.smart_consumption.infrastructure.user.dataproviders;
 
+import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.user.User;
 import com.unicauca.smart_consumption.domain.user.ports.out.IUserRepository;
-import com.unicauca.smart_consumption.infrastructure.pattern.mapper.CityJPAMapper;
-import com.unicauca.smart_consumption.infrastructure.pattern.mapper.OfferJPAMapper;
-import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ReviewJPAMapper;
+import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMapper;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.UserJPAMapper;
+import com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql.ProductJpaEntity;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -21,29 +20,23 @@ public class UserRepositoryAdapter implements IUserRepository {
 
     private final UserJPARepository userJPARepository;
     private final UserJPAMapper userJPAMapper;
-    private final ReviewJPAMapper reviewJPAMapper;
-    private final CityJPAMapper cityJPAMapper;
-    private final OfferJPAMapper offerJPAMapper;
-
+    private final ProductMapper productMapper;
     @Override
     public User createUser(User user) {
         UserJPAEntity entity = userJPAMapper.toTarget(user);
         return userJPAMapper.toDomain(userJPARepository.save(entity));
     }
 
-    @Override
     public User updateUser(String id, User user) {
         return userJPARepository.findById(id)
                 .map(userEntity -> {
-                    userEntity.setUsername(user.getUsername());
-                    userEntity.setName(user.getName());
-                    userEntity.setReviewList(user.getReviews().stream()
-                            .map(reviewJPAMapper::toTarget).collect(Collectors.toList()));
-                    userEntity.setWatchList(user.getWatchList().stream()
-                            .map(offerJPAMapper::toTarget).collect(Collectors.toList()));
-                    userEntity.setCity(cityJPAMapper.toTarget(user.getCity()));
-                    UserJPAEntity updatedEntity = userJPARepository.save(userEntity);
-                    return userJPAMapper.toDomain(updatedEntity);
+                    User domainUser = userJPAMapper.toDomain(userEntity);
+                    domainUser.updateUser(user.getUsername(), user.getName(), user.getCity());
+                    domainUser.setReviews(user.getReviews());
+                     domainUser.setWatchList(user.getWatchList());
+                    UserJPAEntity updatedEntity = userJPAMapper.toTarget(domainUser);
+                    userJPARepository.save(updatedEntity);
+                    return domainUser;
                 })
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id " + id));
     }
