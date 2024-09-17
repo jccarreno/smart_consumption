@@ -23,7 +23,7 @@ public interface IProductCommandService {
    * @param product The {@link Product} with updated information.
    * @return A {@link ResponseDto} containing the updated product and an HTTP status code.
    */
-  ResponseDto<Product> updateProduct(Long id, Product product);
+  ResponseDto<Product> updateProduct(String id, Product product);
 
   /**
    * Deletes an existing product from the system.
@@ -31,7 +31,7 @@ public interface IProductCommandService {
    * @param id The ID of the {@link Product} to be deleted.
    * @return A {@link ResponseDto} indicating the result of the operation with an HTTP status code.
    */
-  ResponseDto<Void> deleteProduct(Long id);
+  ResponseDto<Void> deleteProduct(String id);
 
 
 }

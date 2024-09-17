@@ -110,4 +110,9 @@ public class Product {
   public boolean isInCategory(Category category) {
     return this.category.equals(category);
   }
+
+  public Product orElseThrow(Object object) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
+  }
 }
