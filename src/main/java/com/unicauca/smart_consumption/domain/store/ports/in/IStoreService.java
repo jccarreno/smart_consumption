@@ -47,12 +47,4 @@ public interface IStoreService {
      */
     ResponseDto<List<Store>> findAllStores();
 
-    /**
-     * Adds a product to the store.
-     *
-     * @param storeId The ID of the store.
-     * @param productId The ID of the product.
-     * @return A {@link ResponseDto} containing the list of all {@link Store} and an HTTP status code..
-     */
-    ResponseDto<Store> addProductsToStore(String storeId, List<String> productId);
 }
