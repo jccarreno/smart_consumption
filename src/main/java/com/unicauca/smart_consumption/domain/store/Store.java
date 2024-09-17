@@ -43,12 +43,6 @@ public class Store {
         }
     }
 
-    public void addOffer(Offer offer) {
-        if (Objects.nonNull(offer) && !offers.contains(offer)) {
-            offers.add(offer);
-        }
-    }
-
     public void removeProduct(Product product) {
         products.remove(product);
     }

@@ -16,7 +16,6 @@ public class OfferDto {
     private String description;
     private ProductMongoDto productDto;
     private PeriodEmbeddable periodDto;
-    private StoreDto storeDto;
     private double discountPercentage;
     private double discountedPrice;
 }

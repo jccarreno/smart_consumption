@@ -1,7 +1,6 @@
 package com.unicauca.smart_consumption.domain.offer;
 
 import com.unicauca.smart_consumption.domain.product.Product;
-import com.unicauca.smart_consumption.domain.store.Store;
 import com.unicauca.smart_consumption.domain.valueobject.Period;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -23,10 +22,8 @@ public class Offer {
     private String description;
     private Period validityPeriod;
     private Product product;
-    private Store store;
     private double discountPercentage;
     private double discountedPrice;
-
 
     private double calculateDiscountedPrice() {
         return product.getPrice() * (1 - discountPercentage / 100);

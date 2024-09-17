@@ -24,8 +24,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReviewDto {
-    private UserDto user;
-    private ProductMongoDto product;
+    private UserDto userId;
+    private ProductMongoDto productId;
     private int ratingValue;
     private String comment;
     private LocalDateTime date;

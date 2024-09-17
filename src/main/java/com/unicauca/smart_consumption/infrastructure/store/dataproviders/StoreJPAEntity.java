@@ -43,7 +43,8 @@ public class StoreJPAEntity {
   )
   private List<ProductJpaEntity> products;
 
-  @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany
+  @JoinColumn(name = "offer_id")
   private List<OfferJPAEntity> offers;
 
   @ManyToOne(cascade = CascadeType.ALL)

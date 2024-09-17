@@ -2,8 +2,6 @@ package com.unicauca.smart_consumption.application.service.store;
 
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.constant.MessagesConstant;
-import com.unicauca.smart_consumption.domain.product.Product;
-import com.unicauca.smart_consumption.domain.product.ports.out.IProductQueryRepository;
 import com.unicauca.smart_consumption.domain.store.Store;
 import com.unicauca.smart_consumption.domain.store.ports.in.IStoreService;
 import com.unicauca.smart_consumption.domain.store.ports.out.IStoreRepository;
@@ -21,9 +19,7 @@ import java.util.List;
 public class StoreServiceImpl implements IStoreService {
 
     private final IStoreRepository storeRepository;
-    private final IProductQueryRepository productRepository;
-    //private final IOfferRepository offerRepository;
-    //falta agregar cuando proudct y offer esten listos
+
     @Override
     public ResponseDto<Store> createStore(Store store) {
         Store createdStore = storeRepository.createStore(store);
@@ -65,24 +61,5 @@ public class StoreServiceImpl implements IStoreService {
         return new ResponseDto<>(HttpStatus.OK.value(),
                 MessageLoader.getInstance().getMessage(MessagesConstant.IM001), stores);
     }
-
-    @Override
-    public ResponseDto<Store> addProductsToStore(String storeId, List<String> productIds) {
-        Store store = storeRepository.findStoreById(storeId)
-                .orElseThrow(() -> new BusinessRuleException(HttpStatus.BAD_REQUEST.value(), MessagesConstant.EM002,
-                        MessageLoader.getInstance().getMessage(MessagesConstant.EM002, storeId)));
-
-        for (String productId : productIds) {
-            Product product = productRepository.findProductById(productId)
-                    .orElseThrow(() -> new BusinessRuleException(HttpStatus.BAD_REQUEST.value(), MessagesConstant.EM002,
-                            MessageLoader.getInstance().getMessage(MessagesConstant.EM002, productId)));
-            store.addProduct(product);
-        }
-
-        store = storeRepository.updateStore(storeId, store);
-        return new ResponseDto<>(HttpStatus.OK.value(),
-                MessageLoader.getInstance().getMessage(MessagesConstant.IM002), store);
-    }
-
 
 }
