@@ -2,6 +2,7 @@ package com.unicauca.smart_consumption.infrastructure.offer.dataproviders;
 
 import com.unicauca.smart_consumption.infrastructure.embeddableEntity.PeriodEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql.ProductJpaEntity;
+import com.unicauca.smart_consumption.infrastructure.store.dataproviders.StoreJPAEntity;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -31,11 +32,14 @@ public class OfferJPAEntity {
   private String detail;
   private double discountPercentage;
   private double discountedPrice;
+  @Embedded
+  private PeriodEmbeddable period;
   @ManyToOne
   @JoinColumn(name = "product_id")
   private ProductJpaEntity product;
-  @Embedded
-  private PeriodEmbeddable period;
+  @ManyToOne
+  @JoinColumn(name = "store_id")
+  private StoreJPAEntity store;
   @PrePersist
   public void prePersist() {
     if (Objects.isNull(this.id)  || this.id.isEmpty()) {

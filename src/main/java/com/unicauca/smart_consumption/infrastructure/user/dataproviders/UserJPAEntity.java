@@ -1,7 +1,7 @@
 package com.unicauca.smart_consumption.infrastructure.user.dataproviders;
 
 import com.unicauca.smart_consumption.infrastructure.city.dataproviders.CityJPAEntity;
-import com.unicauca.smart_consumption.infrastructure.offer.dataproviders.OfferJPAEntity;
+import com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql.ProductJpaEntity;
 import com.unicauca.smart_consumption.infrastructure.review.dataproviders.ReviewJPAEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -36,11 +36,11 @@ public class UserJPAEntity {
   private String name;
   @ManyToMany
   @JoinTable(
-      name = "user_offer",
+      name = "user_product",
       joinColumns = @JoinColumn(name = "id"),
-      inverseJoinColumns = @JoinColumn(name = "offer_id")
+      inverseJoinColumns = @JoinColumn(name = "product_id")
   )
-  private List<OfferJPAEntity> watchList;
+  private List<ProductJpaEntity> watchList;
   @ManyToMany
   @JoinTable(
       name = "user_review",

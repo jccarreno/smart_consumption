@@ -3,7 +3,6 @@ package com.unicauca.smart_consumption.infrastructure.review.dataproviders;
 import com.unicauca.smart_consumption.domain.review.Review;
 import com.unicauca.smart_consumption.domain.review.ports.out.IReviewRepository;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ReviewJPAMapper;
-import com.unicauca.smart_consumption.infrastructure.pattern.mapper.UserJPAMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ public class ReviewRepositoryAdapter implements IReviewRepository {
 
     private final ReviewJPARepository reviewJPARepository;
     private final ReviewJPAMapper reviewJPAMapper;
-    private final UserJPAMapper userJPAMapper;
 
     @Override
     public Review createReview(Review review) {
@@ -30,16 +28,18 @@ public class ReviewRepositoryAdapter implements IReviewRepository {
     public Review updateReview(String id, Review review) {
         return reviewJPARepository.findById(id)
                 .map(reviewEntity -> {
-                    reviewEntity.setUser(userJPAMapper.toTarget(review.getUser()));
-                   // reviewEntity.setProduct(review.getProduct());
-                    reviewEntity.setRating(review.getRating());
-                    reviewEntity.setComment(review.getComment());
-                    reviewEntity.setDatePublication(review.getDate());
-                    ReviewJPAEntity updatedEntity = reviewJPARepository.save(reviewEntity);
-                    return reviewJPAMapper.toDomain(updatedEntity);
+                    Review domainReview = reviewJPAMapper.toDomain(reviewEntity);
+                    domainReview.updateReview(review.getRating(), review.getComment());
+                    domainReview.setDate(review.getDate());
+                    domainReview.setUser(review.getUser());
+                    domainReview.setProduct(review.getProduct());
+                    ReviewJPAEntity updatedEntity = reviewJPAMapper.toTarget(domainReview);
+                    reviewJPARepository.save(updatedEntity);
+                    return domainReview;
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Review not found with id " + id));
     }
+
 
     @Override
     public void deleteReview(String id) {
