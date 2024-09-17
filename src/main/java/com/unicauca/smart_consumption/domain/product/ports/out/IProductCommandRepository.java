@@ -1,7 +1,5 @@
 package com.unicauca.smart_consumption.domain.product.ports.out;
 
-import java.util.Optional;
-
 import com.unicauca.smart_consumption.domain.product.Product;
 
 /**
@@ -32,16 +30,5 @@ public interface IProductCommandRepository {
    * @param id The ID of the {@link Product} to be deleted.
    */
   void deleteProduct(String id);
-
-  /**
-   * Finds a product in the system by its ID.
-   *
-   * @param id The ID of the {@link Product} to be retrieved.
-   * @return An {@link Optional} containing the found {@link Product}, if it exists.
-   */
-  Optional<Product> findProductById(String id);
-
-  
-
 
 }

@@ -7,7 +7,6 @@ import com.unicauca.smart_consumption.domain.constant.MessagesConstant;
 import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.product.ports.in.IProductCommandService;
 import com.unicauca.smart_consumption.domain.product.ports.out.IProductCommandRepository;
-import com.unicauca.smart_consumption.infrastructure.exception.BusinessRuleException;
 import com.unicauca.smart_consumption.infrastructure.messages.MessageLoader;
 import lombok.RequiredArgsConstructor;
 
@@ -36,14 +35,10 @@ public class ProductCommandServiceImpl implements IProductCommandService{
 
     @Override
     public ResponseDto<Void> deleteProduct(String id) {
-        if (productCommandRepository.findProductById(id).isEmpty()) {
-            productCommandRepository.deleteProduct(id);
-            return new ResponseDto<>(HttpStatus.NO_CONTENT.value(),
-                MessageLoader.getInstance().getMessage(MessagesConstant.IM004));
-        } else {
-            throw new BusinessRuleException(HttpStatus.BAD_REQUEST.value(), MessagesConstant.EM002,
-                MessageLoader.getInstance().getMessage(MessagesConstant.EM002, id));
-        }
+        productCommandRepository.deleteProduct(id);
+        return new ResponseDto<>(HttpStatus.OK.value(),
+            MessageLoader.getInstance().getMessage(MessagesConstant.IM004));
+        
     }
     
 }

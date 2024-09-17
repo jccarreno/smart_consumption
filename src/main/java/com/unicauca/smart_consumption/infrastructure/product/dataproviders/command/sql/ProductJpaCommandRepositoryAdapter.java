@@ -1,7 +1,5 @@
 package com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.unicauca.smart_consumption.domain.product.Product;
@@ -62,14 +60,10 @@ public class ProductJpaCommandRepositoryAdapter implements IProductCommandReposi
 
     @Override
     public void deleteProduct(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteProduct'");
+        if (productJpaRepository.existsById(id)) {
+            productJpaRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException("Product not found with id " + id);
+        }
     }
-
-    @Override
-    public Optional<Product> findProductById(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findProductById'");
-    }
-    
 }
