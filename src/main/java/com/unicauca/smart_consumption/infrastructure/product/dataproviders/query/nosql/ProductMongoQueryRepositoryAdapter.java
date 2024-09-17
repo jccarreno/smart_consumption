@@ -2,6 +2,7 @@ package com.unicauca.smart_consumption.infrastructure.product.dataproviders.quer
 
 import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.product.ports.out.IProductQueryRepository;
+import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductJsonEntityMapper;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMongoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class ProductMongoQueryRepositoryAdapter implements IProductQueryRepository {
 
   private final ProductMongoRepository productMongoRepository;
-  private final ProductMongoMapper productMongoMapper;
+  private final ProductJsonEntityMapper productMongoMapper;
 
   @Override
   public Optional<Product> findProductById(String id) {

@@ -4,8 +4,9 @@ import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.product.ports.in.IProductQueryService;
 import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductMongoDto;
-import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMapper;
 import java.util.List;
+
+import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMongoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductQueryWebApi {
 
   private final IProductQueryService productQueryService;
-  private final ProductMapper productMapper;
+  private final ProductMongoMapper productMapper;
 
   @GetMapping("/{entityId}")
   public ResponseEntity<ResponseDto<ProductMongoDto>> getProductById(@PathVariable String entityId) {

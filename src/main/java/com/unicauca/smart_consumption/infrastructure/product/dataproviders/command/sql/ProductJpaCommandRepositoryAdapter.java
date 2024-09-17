@@ -7,7 +7,7 @@ import com.unicauca.smart_consumption.domain.product.ports.out.IProductCommandRe
 import com.unicauca.smart_consumption.infrastructure.embeddableEntity.CategoryEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.embeddableEntity.DetailEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.embeddableEntity.SustainabilityCriteriaEmbeddable;
-import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductJpaMapper;
+import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductJpaEntityMapper;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class ProductJpaCommandRepositoryAdapter implements IProductCommandRepository {
 
     private final ProductJpaRepository productJpaRepository;
-    private final ProductJpaMapper productPostgresMapper;
+    private final ProductJpaEntityMapper productPostgresMapper;
 
     @Override
     public Product createProduct(Product product) {

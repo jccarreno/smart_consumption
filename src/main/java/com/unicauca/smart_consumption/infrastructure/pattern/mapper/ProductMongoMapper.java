@@ -16,5 +16,5 @@ import org.mapstruct.Mapper;
  */
 @Mapper(componentModel = "spring")
 public interface ProductMongoMapper
-    extends EntityMapper<ProductMongoEntity, Product> {
+    extends EntityMapper<ProductMongoDto, Product> {
 }
