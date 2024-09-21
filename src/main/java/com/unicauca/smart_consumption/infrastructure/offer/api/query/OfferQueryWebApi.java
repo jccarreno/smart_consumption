@@ -32,11 +32,13 @@ public class OfferQueryWebApi {
     @PostMapping
     public ResponseEntity<ResponseDto<OfferDto>> createOffer(@RequestBody OfferDto offerDto) {
         Offer offer = offerMapper.toDomain(offerDto);
-        ResponseDto<Offer> offerResponse = offerService.createOffer(offer);
+        ResponseDto<Offer> offerResponse = offerService.createOffer(offer, offerDto.getStore()
+                , offerDto.getProduct());
         OfferDto createOfferDto = offerMapper.toTarget(offerResponse.getData());
         return new ResponseDto<>(offerResponse.getStatus(),
                 offerResponse.getMessage(), createOfferDto).of();
     }
+    
 
     @PutMapping("/{entityId}")
     public ResponseEntity<ResponseDto<OfferDto>> updateOffer(@PathVariable String entityId, @RequestBody OfferDto offerDto) {

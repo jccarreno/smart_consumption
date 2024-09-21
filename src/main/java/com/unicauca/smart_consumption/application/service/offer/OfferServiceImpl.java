@@ -5,11 +5,12 @@ import com.unicauca.smart_consumption.domain.constant.MessagesConstant;
 import com.unicauca.smart_consumption.domain.offer.Offer;
 import com.unicauca.smart_consumption.domain.offer.ports.in.IOfferService;
 import com.unicauca.smart_consumption.domain.offer.ports.out.IOfferRepository;
-import com.unicauca.smart_consumption.domain.product.Product;
-import com.unicauca.smart_consumption.domain.user.User;
-import com.unicauca.smart_consumption.domain.user.ports.out.IUserRepository;
 import com.unicauca.smart_consumption.infrastructure.exception.BusinessRuleException;
 import com.unicauca.smart_consumption.infrastructure.messages.MessageLoader;
+import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductPostgresDto;
+import com.unicauca.smart_consumption.infrastructure.pattern.dto.StoreDto;
+import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductPostgresMapper;
+import com.unicauca.smart_consumption.infrastructure.pattern.mapper.StoreMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,14 +24,16 @@ import java.util.List;
 public class OfferServiceImpl implements IOfferService {
 
     private final IOfferRepository offerRepository;
-    private final IUserRepository userRepository;
-
+    private final StoreMapper storeMapper;
+    private final ProductPostgresMapper productPostgresMapper;
+    private final NotifyUsers notify;
 
     @Override
-    public ResponseDto<Offer> createOffer(Offer offer) {
+    public ResponseDto<Offer> createOffer(Offer offer, StoreDto storeDto, ProductPostgresDto productPostgresDto) {
+        offer.setProduct(productPostgresMapper.toDomain(productPostgresDto));
+        offer.setStore(storeMapper.toDomain(storeDto));
         Offer createdOffer = offerRepository.createOffer(offer);
-        Product product = createdOffer.getProduct();
-        notifyUsers(product);
+        notify.notifyUsers(createdOffer.getProduct());
         return new ResponseDto<>(HttpStatus.CREATED.value(),
                 MessageLoader.getInstance().getMessage(MessagesConstant.IM002), createdOffer);
     }
@@ -70,15 +73,4 @@ public class OfferServiceImpl implements IOfferService {
                 MessageLoader.getInstance().getMessage(MessagesConstant.IM001), offers);
     }
 
-    public void notifyUsers(Product product){
-        List<User> interestedUsers = userRepository.findAllUsers();
-
-        List<User> filterUsers =  interestedUsers.stream()
-                .filter(user -> user.getWatchList().contains(product)).toList();
-
-        filterUsers.forEach(user -> {
-            System.out.println("Notificación: El usuario " + user.getUsername()
-                    + " tiene un nuevo descuento en su producto " + product.getName());
-        });
-    }
 }
