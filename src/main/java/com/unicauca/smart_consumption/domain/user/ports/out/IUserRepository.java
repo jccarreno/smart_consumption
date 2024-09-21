@@ -38,6 +38,7 @@ public interface IUserRepository {
      */
     Optional<User> findUserById(String id);
 
+
     /**
      * Retrieves a list of all users in the system.
      *

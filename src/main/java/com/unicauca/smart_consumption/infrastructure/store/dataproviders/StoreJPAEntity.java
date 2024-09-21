@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Objects;
@@ -41,9 +42,12 @@ public class StoreJPAEntity {
       joinColumns = @JoinColumn(name = "store_id"),
       inverseJoinColumns = @JoinColumn(name = "product_id")
   )
+  @ToString.Exclude
   private List<ProductJpaEntity> products;
 
+
   @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
+  @ToString.Exclude
   private List<OfferJPAEntity> offers;
 
   @ManyToOne(cascade = CascadeType.ALL)

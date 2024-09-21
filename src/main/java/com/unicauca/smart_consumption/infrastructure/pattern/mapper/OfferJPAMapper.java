@@ -15,5 +15,6 @@ import org.mapstruct.Mapper;
  */
 
 @Mapper(componentModel = "spring")
+
 public interface OfferJPAMapper extends EntityMapper<OfferJPAEntity, Offer>{
 }

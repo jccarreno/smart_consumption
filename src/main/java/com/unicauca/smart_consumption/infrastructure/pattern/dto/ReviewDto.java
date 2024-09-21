@@ -1,5 +1,6 @@
 package com.unicauca.smart_consumption.infrastructure.pattern.dto;
 
+import com.unicauca.smart_consumption.domain.valueobject.Rating;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +17,6 @@ import java.time.LocalDateTime;
  * @version 1.0
  * @since 2024-09-14
  */
-
 @Getter
 @Setter
 @Builder
@@ -24,9 +24,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReviewDto {
-    private UserDto user;
-    private ProductMongoDto product;
-    private int ratingValue;
+    private Rating rating;
     private String comment;
     private LocalDateTime date;
 }
