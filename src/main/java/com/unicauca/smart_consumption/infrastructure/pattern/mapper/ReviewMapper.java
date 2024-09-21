@@ -14,6 +14,6 @@ import org.mapstruct.Mapper;
  * @see EntityMapper
  */
 
-@Mapper(componentModel = "spring" )
+@Mapper(componentModel = "spring")
 public interface ReviewMapper extends EntityMapper<ReviewDto, Review>{
 }

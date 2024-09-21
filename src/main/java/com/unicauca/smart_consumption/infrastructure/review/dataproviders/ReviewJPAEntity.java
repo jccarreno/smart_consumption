@@ -15,7 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -33,18 +32,16 @@ public class ReviewJPAEntity {
 
   private String comment;
 
-  private LocalDateTime date;
+  private LocalDateTime datePublication;
 
   @Enumerated(EnumType.STRING)
   private Rating rating;
 
   @ManyToOne
-  @ToString.Exclude
   @JoinColumn(name = "product_id", nullable = false)
   private ProductJpaEntity product;
 
   @ManyToOne
-  @ToString.Exclude
   @JoinColumn(name = "user_id", nullable = false)
   private UserJPAEntity user;
 

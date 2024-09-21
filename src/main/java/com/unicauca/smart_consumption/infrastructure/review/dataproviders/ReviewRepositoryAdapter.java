@@ -18,7 +18,6 @@ public class ReviewRepositoryAdapter implements IReviewRepository {
     private final ReviewJPARepository reviewJPARepository;
     private final ReviewJPAMapper reviewJPAMapper;
 
-
     @Override
     public Review createReview(Review review) {
         ReviewJPAEntity entity = reviewJPAMapper.toTarget(review);
@@ -29,11 +28,11 @@ public class ReviewRepositoryAdapter implements IReviewRepository {
     public Review updateReview(String id, Review review) {
         return reviewJPARepository.findById(id)
                 .map(reviewEntity -> {
-                    Review domainReview = new Review();
-                    domainReview.setProduct(review.getProduct());
-                    domainReview.setUser(review.getUser());
+                    Review domainReview = reviewJPAMapper.toDomain(reviewEntity);
                     domainReview.updateReview(review.getRating(), review.getComment());
                     domainReview.setDate(review.getDate());
+                    domainReview.setUser(review.getUser());
+                    domainReview.setProduct(review.getProduct());
                     ReviewJPAEntity updatedEntity = reviewJPAMapper.toTarget(domainReview);
                     reviewJPARepository.save(updatedEntity);
                     return domainReview;
@@ -51,32 +50,14 @@ public class ReviewRepositoryAdapter implements IReviewRepository {
         }
     }
 
-
     @Override
     public Optional<Review> findReviewById(String id) {
-        return reviewJPARepository.findById(id).map(
-                entity -> {
-                    Review domainEntity = new Review();
-                    domainEntity.setId(entity.getId());
-                    domainEntity.setRating(entity.getRating());
-                    domainEntity.setComment(entity.getComment());
-                    domainEntity.setDate(entity.getDate());
-                    return domainEntity;
-                }
-        );
+        return reviewJPARepository.findById(id).map(reviewJPAMapper::toDomain);
     }
 
     @Override
     public List<Review> findAllReviews() {
         return reviewJPARepository.findAll().stream()
-                .map(entity ->{
-                    Review domainEntity = new Review();
-                    domainEntity.setId(entity.getId());
-                    domainEntity.setRating(entity.getRating());
-                    domainEntity.setComment(entity.getComment());
-                    domainEntity.setDate(entity.getDate());
-                    return domainEntity;
-                }
-                ).toList();
+                .map(reviewJPAMapper::toDomain).toList();
     }
 }

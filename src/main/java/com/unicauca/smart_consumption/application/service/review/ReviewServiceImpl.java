@@ -1,6 +1,5 @@
 package com.unicauca.smart_consumption.application.service.review;
 
-import com.unicauca.smart_consumption.application.service.EntityFinder.EntityFinder;
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.constant.MessagesConstant;
 import com.unicauca.smart_consumption.domain.review.Review;
@@ -21,12 +20,9 @@ import java.util.List;
 public class ReviewServiceImpl implements IReviewService {
 
     private final IReviewRepository reviewRepository;
-    private final EntityFinder entityFinder;
 
     @Override
-    public ResponseDto<Review> createReview(Review review, String userId, String productId) {
-        review.setUser(entityFinder.getUserById(userId));
-        review.setProduct(entityFinder.findProductById(productId));
+    public ResponseDto<Review> createReview(Review review) {
         Review createdReview = reviewRepository.createReview(review);
         return new ResponseDto<>(HttpStatus.CREATED.value(),
                 MessageLoader.getInstance().getMessage(MessagesConstant.IM002), createdReview);
@@ -66,5 +62,4 @@ public class ReviewServiceImpl implements IReviewService {
         return new ResponseDto<>(HttpStatus.OK.value(),
                 MessageLoader.getInstance().getMessage(MessagesConstant.IM001), reviews);
     }
-
 }
