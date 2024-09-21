@@ -1,19 +1,20 @@
 package com.unicauca.smart_consumption.domain.valueobject;
 
-import java.time.LocalDate;
-import java.util.Objects;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @EqualsAndHashCode
 @ToString
 public class Period {
-    private final LocalDate startDate;
-    private final LocalDate endDate;
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
 
-    public Period(LocalDate startDate, LocalDate endDate) {
+    public Period(LocalDateTime startDate, LocalDateTime endDate) {
         if (!Objects.nonNull(startDate) || endDate == null) {
             throw new IllegalArgumentException("Start date and end date cannot be null.");
         }
@@ -24,7 +25,7 @@ public class Period {
         this.endDate = endDate;
     }
 
-    public boolean isWithinPeriod(LocalDate date) {
+    public boolean isWithinPeriod(LocalDateTime date) {
         return (date.isEqual(startDate) || date.isAfter(startDate)) && (date.isEqual(endDate) || date.isBefore(endDate));
     }
 

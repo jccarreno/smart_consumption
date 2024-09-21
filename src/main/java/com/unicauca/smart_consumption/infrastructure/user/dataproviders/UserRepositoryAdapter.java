@@ -1,11 +1,8 @@
 package com.unicauca.smart_consumption.infrastructure.user.dataproviders;
 
-import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.user.User;
 import com.unicauca.smart_consumption.domain.user.ports.out.IUserRepository;
-import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMapper;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.UserJPAMapper;
-import com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql.ProductJpaEntity;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +17,7 @@ public class UserRepositoryAdapter implements IUserRepository {
 
     private final UserJPARepository userJPARepository;
     private final UserJPAMapper userJPAMapper;
-    private final ProductMapper productMapper;
+
     @Override
     public User createUser(User user) {
         UserJPAEntity entity = userJPAMapper.toTarget(user);

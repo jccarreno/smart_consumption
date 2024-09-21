@@ -22,8 +22,7 @@ public class StoreServiceImpl implements IStoreService {
 
     private final IStoreRepository storeRepository;
     private final IProductQueryRepository productRepository;
-    //private final IOfferRepository offerRepository;
-    //falta agregar cuando proudct y offer esten listos
+
     @Override
     public ResponseDto<Store> createStore(Store store) {
         Store createdStore = storeRepository.createStore(store);

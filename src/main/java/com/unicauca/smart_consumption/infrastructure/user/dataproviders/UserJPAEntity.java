@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Objects;
@@ -34,6 +35,8 @@ public class UserJPAEntity {
   private String id;
   private String username;
   private String name;
+
+  @ToString.Exclude
   @ManyToMany
   @JoinTable(
       name = "user_product",
@@ -41,6 +44,7 @@ public class UserJPAEntity {
       inverseJoinColumns = @JoinColumn(name = "product_id")
   )
   private List<ProductJpaEntity> watchList;
+  @ToString.Exclude
   @ManyToMany
   @JoinTable(
       name = "user_review",
