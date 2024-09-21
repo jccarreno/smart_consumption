@@ -1,12 +1,9 @@
 package com.unicauca.smart_consumption.infrastructure.embeddableEntity;
 
 import jakarta.persistence.Embeddable;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Embeddable
 @Getter
@@ -14,6 +11,6 @@ import java.time.LocalDateTime;
 @ToString
 @RequiredArgsConstructor
 public class PeriodEmbeddable {
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 }

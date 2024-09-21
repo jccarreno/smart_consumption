@@ -22,4 +22,4 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://mongo:mongo@localhost:10002/local?authSource=admin
+      uri: mongodb://mongo:mongo@localhost:10002/store?authSource=admin

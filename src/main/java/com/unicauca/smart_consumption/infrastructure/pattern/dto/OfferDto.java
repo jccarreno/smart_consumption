@@ -1,6 +1,6 @@
 package com.unicauca.smart_consumption.infrastructure.pattern.dto;
 
-import com.unicauca.smart_consumption.domain.valueobject.Period;
+import com.unicauca.smart_consumption.infrastructure.embeddableEntity.PeriodEmbeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,9 +14,9 @@ import lombok.ToString;
 @ToString
 public class OfferDto {
     private String description;
-    private Period period;
-    private ProductPostgresDto product;
-    private StoreDto store;
+    private ProductMongoDto productDto;
+    private PeriodEmbeddable periodDto;
+    private StoreDto storeDto;
     private double discountPercentage;
     private double discountedPrice;
 }

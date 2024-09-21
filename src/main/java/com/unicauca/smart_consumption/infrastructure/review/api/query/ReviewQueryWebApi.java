@@ -1,10 +1,8 @@
 package com.unicauca.smart_consumption.infrastructure.review.api.query;
 
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
-import com.unicauca.smart_consumption.domain.product.ports.in.IProductQueryService;
 import com.unicauca.smart_consumption.domain.review.Review;
 import com.unicauca.smart_consumption.domain.review.ports.in.IReviewService;
-import com.unicauca.smart_consumption.domain.user.ports.in.IUserService;
 import com.unicauca.smart_consumption.infrastructure.pattern.dto.ReviewDto;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ReviewMapper;
 import lombok.RequiredArgsConstructor;
@@ -28,19 +26,13 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class ReviewQueryWebApi {
     private final IReviewService reviewService;
-    private final IUserService userService;
-    private final IProductQueryService productService;
     private final ReviewMapper reviewMapper;
 
-    @PostMapping("/reviews/{userId}/{productId}")
-    public ResponseEntity<ResponseDto<ReviewDto>> createReview(
-            @PathVariable String userId,
-            @PathVariable String productId,
-            @RequestBody ReviewDto reviewDto) {
+    @PostMapping
+    public ResponseEntity<ResponseDto<ReviewDto>> createReview(@RequestBody ReviewDto reviewDto) {
         Review review = reviewMapper.toDomain(reviewDto);
-        ResponseDto<Review> reviewResponse = reviewService.createReview(review,userId,productId);
+        ResponseDto<Review> reviewResponse = reviewService.createReview(review);
         ReviewDto createdReviewDto = reviewMapper.toTarget(reviewResponse.getData());
-
         return new ResponseDto<>(reviewResponse.getStatus(),
                 reviewResponse.getMessage(), createdReviewDto).of();
     }

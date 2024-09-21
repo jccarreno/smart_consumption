@@ -12,7 +12,7 @@ public interface IReviewService {
      * @param review The {@link Review} to be created.
      * @return A {@link ResponseDto} containing the created {@link Review} and an HTTP status code.
      */
-    ResponseDto<Review> createReview(Review review, String userId, String productId);
+    ResponseDto<Review> createReview(Review review);
 
     /**
      * Updates an existing review in the system.

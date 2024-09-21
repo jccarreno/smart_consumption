@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class Offer {
     private String id;
     private String description;
-    private Period period;
+    private Period validityPeriod;
     private Product product;
     private Store store;
     private double discountPercentage;
@@ -44,8 +44,8 @@ public class Offer {
     }
 
     public boolean isValid() {
-        LocalDateTime today = LocalDateTime.now();
-        return period.isWithinPeriod(today);
+        LocalDate today = LocalDate.now();
+        return validityPeriod.isWithinPeriod(today);
     }
 
 }

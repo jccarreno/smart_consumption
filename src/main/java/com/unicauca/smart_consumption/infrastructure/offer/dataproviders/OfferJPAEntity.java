@@ -3,7 +3,6 @@ package com.unicauca.smart_consumption.infrastructure.offer.dataproviders;
 import com.unicauca.smart_consumption.infrastructure.embeddableEntity.PeriodEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql.ProductJpaEntity;
 import com.unicauca.smart_consumption.infrastructure.store.dataproviders.StoreJPAEntity;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,7 +14,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -31,24 +29,17 @@ import java.util.UUID;
 public class OfferJPAEntity {
   @Id
   private String id;
-  private String description;
-
+  private String detail;
+  private double discountPercentage;
+  private double discountedPrice;
   @Embedded
   private PeriodEmbeddable period;
-
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "product_id")
-  @ToString.Exclude
   private ProductJpaEntity product;
-
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "store_id")
-  @ToString.Exclude
   private StoreJPAEntity store;
-
-  private double discountPercentage;
-
-  private double discountedPrice;
   @PrePersist
   public void prePersist() {
     if (Objects.isNull(this.id)  || this.id.isEmpty()) {
