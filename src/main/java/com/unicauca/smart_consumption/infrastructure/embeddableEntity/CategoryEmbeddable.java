@@ -1,13 +1,14 @@
 package com.unicauca.smart_consumption.infrastructure.embeddableEntity;
 
 import jakarta.persistence.Embeddable;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Embeddable
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 public class CategoryEmbeddable {
-    private  String name;
+    private  String categoryName;
 }
