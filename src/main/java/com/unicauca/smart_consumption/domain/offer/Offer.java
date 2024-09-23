@@ -28,8 +28,9 @@ public class Offer {
     private double discountedPrice;
 
 
-    private double calculateDiscountedPrice() {
-        return product.getPrice() * (1 - discountPercentage / 100);
+    public double calculateDiscountedPrice() {
+        discountedPrice=product.getPrice() * (1 - discountPercentage / 100);
+        return discountedPrice;
     }
 
     public Offer update(String description, double discountPercentage) {

@@ -1,5 +1,6 @@
 package com.unicauca.smart_consumption.application.service.offer;
 
+import com.unicauca.smart_consumption.application.service.EntityFinder.EntityFinder;
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.constant.MessagesConstant;
 import com.unicauca.smart_consumption.domain.offer.Offer;
@@ -7,10 +8,6 @@ import com.unicauca.smart_consumption.domain.offer.ports.in.IOfferService;
 import com.unicauca.smart_consumption.domain.offer.ports.out.IOfferRepository;
 import com.unicauca.smart_consumption.infrastructure.exception.BusinessRuleException;
 import com.unicauca.smart_consumption.infrastructure.messages.MessageLoader;
-import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductPostgresDto;
-import com.unicauca.smart_consumption.infrastructure.pattern.dto.StoreDto;
-import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductPostgresMapper;
-import com.unicauca.smart_consumption.infrastructure.pattern.mapper.StoreMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,14 +21,14 @@ import java.util.List;
 public class OfferServiceImpl implements IOfferService {
 
     private final IOfferRepository offerRepository;
-    private final StoreMapper storeMapper;
-    private final ProductPostgresMapper productPostgresMapper;
+    private final EntityFinder entityFinder;
     private final NotifyUsers notify;
 
     @Override
-    public ResponseDto<Offer> createOffer(Offer offer, StoreDto storeDto, ProductPostgresDto productPostgresDto) {
-        offer.setProduct(productPostgresMapper.toDomain(productPostgresDto));
-        offer.setStore(storeMapper.toDomain(storeDto));
+    public ResponseDto<Offer> createOffer(Offer offer, String storeId, String productId) {
+        offer.setProduct(entityFinder.findProductById(productId));
+        offer.setStore(entityFinder.findStoreById(storeId));
+        offer.calculateDiscountedPrice();
         Offer createdOffer = offerRepository.createOffer(offer);
         notify.notifyUsers(createdOffer.getProduct());
         return new ResponseDto<>(HttpStatus.CREATED.value(),

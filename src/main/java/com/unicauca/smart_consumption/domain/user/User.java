@@ -45,7 +45,6 @@ public class User {
         }
     }
 
-    public void removedProduct(Product product) { watchList.remove(product); }
     public void removeReview(Review review) {
         reviews.remove(review);
     }
@@ -62,4 +61,23 @@ public class User {
         return reviews.contains(review) && review.isAuthentic();
     }
     
+    public boolean addProductToWatchList(Product product)
+    {
+        if (Objects.nonNull(product) && !watchList.contains(product))
+        {
+            watchList.add(product);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteProductFromWatchList(Product product)
+    {
+        if (Objects.nonNull(product) && watchList.contains(product))
+        {
+            watchList.remove(product);
+            return true;
+        }
+        return false;
+    }
 }

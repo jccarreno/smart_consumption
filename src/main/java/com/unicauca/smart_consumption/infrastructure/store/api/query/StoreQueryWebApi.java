@@ -22,7 +22,7 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping(value = "/store-query")
+@RequestMapping(value = "/store")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class StoreQueryWebApi {
 

@@ -36,12 +36,12 @@ public class OfferJPAEntity {
   @Embedded
   private PeriodEmbeddable period;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "product_id")
   @ToString.Exclude
   private ProductJpaEntity product;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "store_id")
   @ToString.Exclude
   private StoreJPAEntity store;

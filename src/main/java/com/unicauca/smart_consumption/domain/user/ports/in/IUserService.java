@@ -1,6 +1,7 @@
 package com.unicauca.smart_consumption.domain.user.ports.in;
 
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
+import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.user.User;
 
 import java.util.List;
@@ -47,4 +48,7 @@ public interface IUserService {
      */
     ResponseDto<List<User>> findAllUsers();
 
+    ResponseDto<Product> addToWatchList(String userId, String productId);
+    ResponseDto<Product> removeFromWatchList(String userId, String productId);
+    ResponseDto<List<Product>> getWatchList(String userId);
 }

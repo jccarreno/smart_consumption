@@ -22,18 +22,20 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping(value = "/offer-query")
+@RequestMapping(value = "/offer")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class OfferQueryWebApi {
 
     private final IOfferService offerService;
     private final OfferMapper offerMapper;
 
-    @PostMapping
-    public ResponseEntity<ResponseDto<OfferDto>> createOffer(@RequestBody OfferDto offerDto) {
+    @PostMapping("/{storeId}/{productId}")
+    public ResponseEntity<ResponseDto<OfferDto>> createOffer(
+        @RequestBody OfferDto offerDto,
+        @PathVariable String storeId,
+        @PathVariable String productId) {
         Offer offer = offerMapper.toDomain(offerDto);
-        ResponseDto<Offer> offerResponse = offerService.createOffer(offer, offerDto.getStore()
-                , offerDto.getProduct());
+        ResponseDto<Offer> offerResponse = offerService.createOffer(offer, storeId, productId);
         OfferDto createOfferDto = offerMapper.toTarget(offerResponse.getData());
         return new ResponseDto<>(offerResponse.getStatus(),
                 offerResponse.getMessage(), createOfferDto).of();

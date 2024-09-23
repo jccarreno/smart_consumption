@@ -2,8 +2,6 @@ package com.unicauca.smart_consumption.domain.offer.ports.in;
 
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.offer.Offer;
-import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductPostgresDto;
-import com.unicauca.smart_consumption.infrastructure.pattern.dto.StoreDto;
 
 import java.util.List;
 
@@ -14,7 +12,7 @@ public interface IOfferService {
      * @param offer The {@link Offer} to be created.
      * @return A {@link ResponseDto} containing the created {@link Offer} object and an HTTP status code.
      */
-    ResponseDto<Offer> createOffer(Offer offer, StoreDto storeDto, ProductPostgresDto productPostgresDto);
+    ResponseDto<Offer> createOffer(Offer offer, String storeId, String productId);
 
     /**
      * Updates an existing offer in the system.

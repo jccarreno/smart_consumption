@@ -1,7 +1,9 @@
 package com.unicauca.smart_consumption.application.service.user;
 
+import com.unicauca.smart_consumption.application.service.EntityFinder.EntityFinder;
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.constant.MessagesConstant;
+import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.user.User;
 import com.unicauca.smart_consumption.domain.user.ports.in.IUserService;
 import com.unicauca.smart_consumption.domain.user.ports.out.IUserRepository;
@@ -18,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class UserServiceImpl implements IUserService {
     private final IUserRepository userRepository;
+    private final EntityFinder entityFinder;
 
     @Override
     public ResponseDto<User> createUser(User user) {
@@ -61,4 +64,37 @@ public class UserServiceImpl implements IUserService {
                 MessageLoader.getInstance().getMessage(MessagesConstant.IM001), users);
     }
 
+    @Override
+    public ResponseDto<Product> addToWatchList(String userId, String productId) {
+        User user=entityFinder.getUserById(userId);
+        Product product=entityFinder.findProductById(productId);
+        if(user.addProductToWatchList(product))
+        {
+            userRepository.updateUser(user.getId(), user);
+            return new ResponseDto<>(HttpStatus.ACCEPTED.value(),
+            MessageLoader.getInstance().getMessage(MessagesConstant.IM002), product);
+        }
+        return new ResponseDto<>(HttpStatus.NOT_FOUND.value(),
+                MessageLoader.getInstance().getMessage(MessagesConstant.EM001), "404");
+    }
+
+    @Override
+    public ResponseDto<Product> removeFromWatchList(String userId, String productId) {
+        User user=entityFinder.getUserById(userId);
+        Product product=entityFinder.findProductById(productId);
+        if(user.deleteProductFromWatchList(product))
+        {
+            return new ResponseDto<>(HttpStatus.ACCEPTED.value(),
+            MessageLoader.getInstance().getMessage(MessagesConstant.IM002), product);
+        }
+        return new ResponseDto<>(HttpStatus.NOT_FOUND.value(),
+                MessageLoader.getInstance().getMessage(MessagesConstant.EM001), "404");
+    }
+
+    @Override
+    public ResponseDto<List<Product>> getWatchList(String userId) {
+        User user=entityFinder.getUserById(userId);
+        return new ResponseDto<>(HttpStatus.ACCEPTED.value(),
+        MessageLoader.getInstance().getMessage(MessagesConstant.IM001), user.getWatchList());
+    }
 }
