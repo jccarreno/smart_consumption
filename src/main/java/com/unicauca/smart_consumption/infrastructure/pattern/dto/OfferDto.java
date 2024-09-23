@@ -15,7 +15,7 @@ import lombok.ToString;
 public class OfferDto {
     private String description;
     private Period period;
-    private ProductPostgresDto product;
+    private ProductDto product;
     private StoreDto store;
     private double discountPercentage;
     private double discountedPrice;

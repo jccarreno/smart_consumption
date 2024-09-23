@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.product.ports.in.IProductCommandService;
-import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductPostgresDto;
-import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductPostgresMapper;
+import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductDto;
+import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -26,22 +26,22 @@ import lombok.extern.log4j.Log4j2;
 public class ProductCommandWebApi {
 
     private final IProductCommandService productCommandService;
-    private final ProductPostgresMapper productPostgresMapper;
+    private final ProductMapper productMapper;
 
     @PostMapping
-    public ResponseEntity<ResponseDto<ProductPostgresDto>> createProduct(@RequestBody ProductPostgresDto productDto) {
-        Product product =  productPostgresMapper.toDomain(productDto);
+    public ResponseEntity<ResponseDto<ProductDto>> createProduct(@RequestBody ProductDto productDto) {
+        Product product =  productMapper.toDomain(productDto);
         ResponseDto<Product> productResponse = productCommandService.createProduct(product);
-        ProductPostgresDto createdProductDto = productPostgresMapper.toTarget(productResponse.getData());
+        ProductDto createdProductDto = productMapper.toTarget(productResponse.getData());
         return new ResponseDto<>(productResponse.getStatus(),
                 productResponse.getMessage(), createdProductDto).of();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseDto<ProductPostgresDto>> updateProduct(@PathVariable String id, @RequestBody ProductPostgresDto productDto) {
-        Product product = productPostgresMapper.toDomain(productDto);
+    public ResponseEntity<ResponseDto<ProductDto>> updateProduct(@PathVariable String id, @RequestBody ProductDto productDto) {
+        Product product = productMapper.toDomain(productDto);
         ResponseDto<Product> productResponse = productCommandService.updateProduct(id, product);
-        ProductPostgresDto updatedProductDto = productPostgresMapper.toTarget(productResponse.getData());
+        ProductDto updatedProductDto = productMapper.toTarget(productResponse.getData());
         return new ResponseDto<>(productResponse.getStatus(),
                 productResponse.getMessage(), updatedProductDto).of();
     }

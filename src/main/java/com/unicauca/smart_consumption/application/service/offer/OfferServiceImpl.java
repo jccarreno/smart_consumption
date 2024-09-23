@@ -8,6 +8,10 @@ import com.unicauca.smart_consumption.domain.offer.ports.in.IOfferService;
 import com.unicauca.smart_consumption.domain.offer.ports.out.IOfferRepository;
 import com.unicauca.smart_consumption.infrastructure.exception.BusinessRuleException;
 import com.unicauca.smart_consumption.infrastructure.messages.MessageLoader;
+import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductDto;
+import com.unicauca.smart_consumption.infrastructure.pattern.dto.StoreDto;
+import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMapper;
+import com.unicauca.smart_consumption.infrastructure.pattern.mapper.StoreMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,14 +25,14 @@ import java.util.List;
 public class OfferServiceImpl implements IOfferService {
 
     private final IOfferRepository offerRepository;
-    private final EntityFinder entityFinder;
+    private final StoreMapper storeMapper;
+    private final ProductMapper productMapper;
     private final NotifyUsers notify;
 
     @Override
-    public ResponseDto<Offer> createOffer(Offer offer, String storeId, String productId) {
-        offer.setProduct(entityFinder.findProductById(productId));
-        offer.setStore(entityFinder.findStoreById(storeId));
-        offer.calculateDiscountedPrice();
+    public ResponseDto<Offer> createOffer(Offer offer, StoreDto storeDto, ProductDto productDto) {
+        offer.setProduct(productMapper.toDomain(productDto));
+        offer.setStore(storeMapper.toDomain(storeDto));
         Offer createdOffer = offerRepository.createOffer(offer);
         notify.notifyUsers(createdOffer.getProduct());
         return new ResponseDto<>(HttpStatus.CREATED.value(),

@@ -7,10 +7,9 @@ import com.unicauca.smart_consumption.infrastructure.product.dataproviders.comma
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql.ProductJpaRepository;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.query.nosql.ProductMongoEntity;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.query.nosql.ProductMongoRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +22,7 @@ public class ProductSyncService {
     public void syncProducts(){
         List<ProductJpaEntity> productsJpa = productJpaRepository.findAll();
         List<Product> productsDomain=productsJpa.stream().map(productJpaEntityMapper::toDomain).toList();
-        List<ProductMongoEntity> productMongos = productsDomain.stream().map(productJsonEntityMapper::toTarget).toList();
-        productMongoRepository.saveAll(productMongos);
+        List<ProductMongoEntity> productMongoLst = productsDomain.stream().map(productJsonEntityMapper::toTarget).toList();
+        productMongoRepository.saveAll(productMongoLst);
     }
 }

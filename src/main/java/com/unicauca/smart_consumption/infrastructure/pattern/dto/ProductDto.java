@@ -18,7 +18,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductPostgresDto {
+public class ProductDto {
   private String name;
   private CategoryDto category;
   private Detail detail;
