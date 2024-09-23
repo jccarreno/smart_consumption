@@ -4,9 +4,9 @@ import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.user.User;
 import com.unicauca.smart_consumption.domain.user.ports.in.IUserService;
-import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductMongoDto;
+import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductDto;
 import com.unicauca.smart_consumption.infrastructure.pattern.dto.UserDto;
-import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMongoMapper;
+import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMapper;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -30,7 +31,7 @@ import java.util.List;
 public class UserQueryWebApi {
     private final IUserService userService;
     private final UserMapper userMapper;
-    private final ProductMongoMapper productMongoMapper;
+    private final ProductMapper productMapper;
 
     @PostMapping
     public ResponseEntity<ResponseDto<UserDto>> createUser(@RequestBody UserDto userDto) {
@@ -75,25 +76,27 @@ public class UserQueryWebApi {
     }
 
     @PostMapping("/watchlist/{userId}/{productId}")
-    public ResponseEntity<ResponseDto<ProductMongoDto>> addProductToWatchlist(
+    public ResponseEntity<ResponseDto<ProductDto>> addProductToWatchlist(
         @PathVariable String userId,
         @PathVariable String productId) {
         ResponseDto<Product> response=userService.addToWatchList(userId, productId);
         if(response.getData()!=null)
         {
-            ProductMongoDto productDto=productMongoMapper.toTarget(response.getData());
-            return new ResponseDto<ProductMongoDto>(response.getStatus(),response.getMessage(),productDto).of();
+            ProductDto productDto=productMapper.toTarget(response.getData());
+            return new ResponseDto<ProductDto>(response.getStatus(),response.getMessage(),productDto).of();
         } 
-        return new ResponseDto<ProductMongoDto>(response.getStatus(),response.getMessage(),response.getErrorCode()).of();
+        return new ResponseDto<ProductDto>(response.getStatus(),response.getMessage(),response.getErrorCode()).of();
     }
 
     @GetMapping("/watchlist/{userId}")
-    public ResponseEntity<ResponseDto<List<ProductMongoDto>>> getWatchlist(
+    public ResponseEntity<ResponseDto<List<ProductDto>>> getWatchlist(
         @PathVariable String userId) {
         ResponseDto<List<Product>> response=userService.getWatchList(userId);
-        List<ProductMongoDto> mappedResponse=response.getData().stream()
-        .map(productMongoMapper::toTarget)
-        .toList();
-        return new ResponseDto<List<ProductMongoDto>>(response.getStatus(),response.getMessage(),mappedResponse).of();
+        List<ProductDto> mappedResponse = new ArrayList<>();
+        for (Product product : response.getData()) {
+            ProductDto productDto = productMapper.toTarget(product);
+            mappedResponse.add(productDto);
+        }
+        return new ResponseDto<List<ProductDto>>(response.getStatus(),response.getMessage(),mappedResponse).of();
     }
 }

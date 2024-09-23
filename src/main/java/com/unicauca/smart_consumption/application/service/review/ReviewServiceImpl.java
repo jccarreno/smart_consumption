@@ -1,11 +1,12 @@
 package com.unicauca.smart_consumption.application.service.review;
 
-import com.unicauca.smart_consumption.application.service.EntityFinder.EntityFinder;
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.constant.MessagesConstant;
+import com.unicauca.smart_consumption.domain.product.ports.in.IProductQueryService;
 import com.unicauca.smart_consumption.domain.review.Review;
 import com.unicauca.smart_consumption.domain.review.ports.in.IReviewService;
 import com.unicauca.smart_consumption.domain.review.ports.out.IReviewRepository;
+import com.unicauca.smart_consumption.domain.user.ports.out.IUserRepository;
 import com.unicauca.smart_consumption.infrastructure.exception.BusinessRuleException;
 import com.unicauca.smart_consumption.infrastructure.messages.MessageLoader;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +22,14 @@ import java.util.List;
 public class ReviewServiceImpl implements IReviewService {
 
     private final IReviewRepository reviewRepository;
-    private final EntityFinder entityFinder;
+    private final IProductQueryService productQueryService;
+    private final IUserRepository userRepository;
+    
 
     @Override
     public ResponseDto<Review> createReview(Review review, String userId, String productId) {
-        review.setUser(entityFinder.getUserById(userId));
-        review.setProduct(entityFinder.findProductById(productId));
+        review.setUser(userRepository.findUserById(userId).get());
+        review.setProduct(productQueryService.findProductById(productId).getData());
         Review createdReview = reviewRepository.createReview(review);
         return new ResponseDto<>(HttpStatus.CREATED.value(),
                 MessageLoader.getInstance().getMessage(MessagesConstant.IM002), createdReview);
