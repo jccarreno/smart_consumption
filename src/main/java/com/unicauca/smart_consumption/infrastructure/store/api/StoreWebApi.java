@@ -26,7 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/store")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-@Tag(name = "Store APIs", description = "Store APIs")
+@Tag(name = "Store APIs", description = "Store web APIs")
 public class StoreWebApi {
 
     private final IStoreService storeService;

@@ -15,7 +15,7 @@ import com.unicauca.smart_consumption.infrastructure.messages.MessageLoader;
 @RestController
 @RequestMapping("/sync")
 @RequiredArgsConstructor
-@Tag(name = "Product Sync Backend APIs", description = "Product Sync APIs")
+@Tag(name = "Product Sync APIs", description = "For synchronize products DBs")
 public class ProductSyncWebApi {
 
     private final ProductSyncService productSyncService;

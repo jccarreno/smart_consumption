@@ -5,6 +5,8 @@ import com.unicauca.smart_consumption.domain.offer.Offer;
 import com.unicauca.smart_consumption.domain.offer.ports.in.IOfferService;
 import com.unicauca.smart_consumption.infrastructure.pattern.dto.OfferDto;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.OfferMapper;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/offer")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@Tag(name = "Offer APIs", description = "Ofer web APIs")
 public class OfferWebApi {
 
     private final IOfferService offerService;

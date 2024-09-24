@@ -25,7 +25,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/city")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-@Tag(name = "City Sync Backend APIs", description = "City Sync APIs")
+@Tag(name = "City APIs", description = "City web APIs")
 public class CityWebApi {
 
     private final ICityService cityService;

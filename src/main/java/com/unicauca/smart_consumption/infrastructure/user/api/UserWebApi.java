@@ -30,7 +30,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/user")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-@Tag(name = "User APIs", description = "User APIs")
+@Tag(name = "User APIs", description = "User web APIs")
 public class UserWebApi {
     private final IUserService userService;
     private final UserMapper userMapper;

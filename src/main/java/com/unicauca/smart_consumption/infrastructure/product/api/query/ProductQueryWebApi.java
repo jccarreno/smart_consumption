@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/product-query")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-@Tag(name = "Product Query Backend APIs", description = "Product Query APIs")
+@Tag(name = "Product query CQRS APIs", description = "Product web APIs for query services")
 public class ProductQueryWebApi {
 
   private final IProductQueryService productQueryService;

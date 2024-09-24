@@ -16,6 +16,7 @@ import com.unicauca.smart_consumption.domain.product.ports.in.IProductCommandSer
 import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductDto;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMapper;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -23,6 +24,7 @@ import lombok.extern.log4j.Log4j2;
 @RestController
 @RequestMapping(value = "/product-command")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@Tag(name = "Product command CQRS APIs", description = "Product web APIs for command services")
 public class ProductCommandWebApi {
 
     private final IProductCommandService productCommandService;

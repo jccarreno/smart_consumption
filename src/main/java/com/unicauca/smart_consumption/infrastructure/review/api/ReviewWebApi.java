@@ -26,7 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/review")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-@Tag(name = "Review APIs", description = "Review APIs")
+@Tag(name = "Review APIs", description = "Review web APIs")
 public class ReviewWebApi {
     private final IReviewService reviewService;
     private final ReviewMapper reviewMapper;
