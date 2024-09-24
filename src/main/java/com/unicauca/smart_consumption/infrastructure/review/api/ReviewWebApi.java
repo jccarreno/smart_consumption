@@ -1,4 +1,4 @@
-package com.unicauca.smart_consumption.infrastructure.review.api.query;
+package com.unicauca.smart_consumption.infrastructure.review.api;
 
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.review.Review;
@@ -24,7 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/review")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class ReviewQueryWebApi {
+public class ReviewWebApi {
     private final IReviewService reviewService;
     private final ReviewMapper reviewMapper;
 
