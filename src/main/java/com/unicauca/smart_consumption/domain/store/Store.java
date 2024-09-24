@@ -37,9 +37,9 @@ public class Store {
         }
     }
 
-    public void addProduct(Product product) {
-        if (Objects.nonNull(product) && !products.contains(product)) {
-            products.add(product);
+    public void addProducts(List<Product> products) {
+        if (Objects.nonNull(products)) {
+           products.forEach(product -> this.products.add(product));
         }
     }
 

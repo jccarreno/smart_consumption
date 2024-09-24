@@ -23,4 +23,11 @@ public interface IProductQueryRepository {
    * @return A list of all {@link Product} entities.
    */
   List<Product> findAllProducts();
+
+  /**
+   * Retrieves a list of all products in the system.
+   *
+   * @return A list of all {@link Product} entities.
+   */
+  List<Product> findAllByIdIn(List<String> ids);
 }

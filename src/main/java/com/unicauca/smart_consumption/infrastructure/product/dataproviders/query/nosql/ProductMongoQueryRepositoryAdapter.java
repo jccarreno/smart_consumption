@@ -29,4 +29,11 @@ public class ProductMongoQueryRepositoryAdapter implements IProductQueryReposito
         .map(productMongoMapper::toDomain)
         .toList();
   }
+
+  @Override
+  public List<Product> findAllByIdIn(List<String> ids) {
+    return this.productMongoRepository.findAllById(ids).
+            stream().map(productMongoMapper::toDomain).toList();
+  }
+
 }

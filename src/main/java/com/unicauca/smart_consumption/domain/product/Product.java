@@ -1,8 +1,6 @@
 package com.unicauca.smart_consumption.domain.product;
 
-import com.unicauca.smart_consumption.domain.city.City;
 import com.unicauca.smart_consumption.domain.review.Review;
-import com.unicauca.smart_consumption.domain.store.Store;
 import com.unicauca.smart_consumption.domain.valueobject.Category;
 import com.unicauca.smart_consumption.domain.valueobject.Detail;
 import com.unicauca.smart_consumption.domain.valueobject.ProductStatus;
@@ -16,7 +14,6 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,7 +29,7 @@ public class Product {
   private ProductStatus status;
   private double price;
   private List<Review> reviews;
-  private List<Store> stores;
+ // private List<Store> stores;
 
   public void updateProduct(String name, Category category, Detail detail,
                             SustainabilityCriteria sustainabilityCriteria, ProductStatus status, double price) {
@@ -56,29 +53,29 @@ public class Product {
     }
   }
 
-  public void addStore(Store store) {
-    if (Objects.nonNull(store) && !stores.contains(store)) {
-      stores.add(store);
-    }
-  }
+//  public void addStore(Store store) {
+//    if (Objects.nonNull(store) && !stores.contains(store)) {
+//      stores.add(store);
+//    }
+//  }
 
-  public void removeStore(Store store) {
-    stores.remove(store);
-  }
+//  public void removeStore(Store store) {
+//    stores.remove(store);
+//  }
+//
+//  public boolean isAvailableInStore(Store store) {
+//    return stores.contains(store);
+//  }
 
-  public boolean isAvailableInStore(Store store) {
-    return stores.contains(store);
-  }
-
-  public List<Store> getStoresByCity(City city) {
-    List<Store> storesByCity = new ArrayList<>();
-    for (Store store : stores) {
-      if (store.getCity().equals(city)) {
-        storesByCity.add(store);
-      }
-    }
-    return storesByCity;
-  }
+//  public List<Store> getStoresByCity(City city) {
+//    List<Store> storesByCity = new ArrayList<>();
+//    for (Store store : stores) {
+//      if (store.getCity().equals(city)) {
+//        storesByCity.add(store);
+//      }
+//    }
+//    return storesByCity;
+//  }
 
   public void applyDiscount(double percentage) {
     if (percentage > 0 && percentage <= 100) {

@@ -71,13 +71,8 @@ public class StoreServiceImpl implements IStoreService {
                 .orElseThrow(() -> new BusinessRuleException(HttpStatus.BAD_REQUEST.value(), MessagesConstant.EM002,
                         MessageLoader.getInstance().getMessage(MessagesConstant.EM002, storeId)));
 
-        for (String productId : productIds) {
-            Product product = productRepository.findProductById(productId)
-                    .orElseThrow(() -> new BusinessRuleException(HttpStatus.BAD_REQUEST.value(), MessagesConstant.EM002,
-                            MessageLoader.getInstance().getMessage(MessagesConstant.EM002, productId)));
-            store.addProduct(product);
-        }
-
+        List<Product> products = this.productRepository.findAllByIdIn(productIds);
+        store.addProducts(products);
         store = storeRepository.updateStore(storeId, store);
         return new ResponseDto<>(HttpStatus.OK.value(),
                 MessageLoader.getInstance().getMessage(MessagesConstant.IM002), store);
