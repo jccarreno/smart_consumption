@@ -1,4 +1,4 @@
-package com.unicauca.smart_consumption.infrastructure.embeddableEntity;
+package com.unicauca.smart_consumption.infrastructure.offer.dataproviders;
 
 import jakarta.persistence.Embeddable;
 import lombok.Getter;

@@ -1,9 +1,9 @@
 package com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql;
 
 import com.unicauca.smart_consumption.domain.valueobject.ProductStatus;
-import com.unicauca.smart_consumption.infrastructure.embeddableEntity.CategoryEmbeddable;
-import com.unicauca.smart_consumption.infrastructure.embeddableEntity.DetailEmbeddable;
-import com.unicauca.smart_consumption.infrastructure.embeddableEntity.SustainabilityCriteriaEmbeddable;
+import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.CategoryEmbeddable;
+import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.DetailEmbeddable;
+import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.SustainabilityCriteriaEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.review.dataproviders.ReviewJPAEntity;
 import com.unicauca.smart_consumption.infrastructure.store.dataproviders.StoreJPAEntity;
 import jakarta.persistence.CascadeType;

@@ -1,6 +1,5 @@
 package com.unicauca.smart_consumption.infrastructure.offer.dataproviders;
 
-import com.unicauca.smart_consumption.infrastructure.embeddableEntity.PeriodEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql.ProductJpaEntity;
 import com.unicauca.smart_consumption.infrastructure.store.dataproviders.StoreJPAEntity;
 import jakarta.persistence.CascadeType;

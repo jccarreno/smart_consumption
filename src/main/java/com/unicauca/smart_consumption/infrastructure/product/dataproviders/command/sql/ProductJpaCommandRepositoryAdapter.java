@@ -1,12 +1,12 @@
 package com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql;
 
+import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.CategoryEmbeddable;
+import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.DetailEmbeddable;
+import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.SustainabilityCriteriaEmbeddable;
 import org.springframework.stereotype.Service;
 
 import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.product.ports.out.IProductCommandRepository;
-import com.unicauca.smart_consumption.infrastructure.embeddableEntity.CategoryEmbeddable;
-import com.unicauca.smart_consumption.infrastructure.embeddableEntity.DetailEmbeddable;
-import com.unicauca.smart_consumption.infrastructure.embeddableEntity.SustainabilityCriteriaEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductJpaEntityMapper;
 
 import jakarta.persistence.EntityNotFoundException;
