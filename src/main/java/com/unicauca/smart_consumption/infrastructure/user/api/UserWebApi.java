@@ -1,4 +1,4 @@
-package com.unicauca.smart_consumption.infrastructure.user.api.query;
+package com.unicauca.smart_consumption.infrastructure.user.api;
 
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.product.Product;
@@ -8,6 +8,8 @@ import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductDto;
 import com.unicauca.smart_consumption.infrastructure.pattern.dto.UserDto;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMapper;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.UserMapper;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/user")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class UserQueryWebApi {
+@Tag(name = "User APIs", description = "User APIs")
+public class UserWebApi {
     private final IUserService userService;
     private final UserMapper userMapper;
     private final ProductMapper productMapper;

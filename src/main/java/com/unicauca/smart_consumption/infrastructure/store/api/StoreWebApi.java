@@ -1,10 +1,12 @@
-package com.unicauca.smart_consumption.infrastructure.store.api.query;
+package com.unicauca.smart_consumption.infrastructure.store.api;
 
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.store.Store;
 import com.unicauca.smart_consumption.domain.store.ports.in.IStoreService;
 import com.unicauca.smart_consumption.infrastructure.pattern.dto.StoreDto;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.StoreMapper;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/store")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class StoreQueryWebApi {
+@Tag(name = "Store APIs", description = "Store APIs")
+public class StoreWebApi {
 
     private final IStoreService storeService;
     private final StoreMapper storeMapper;

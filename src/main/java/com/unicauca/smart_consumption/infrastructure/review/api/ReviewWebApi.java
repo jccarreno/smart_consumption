@@ -1,10 +1,12 @@
-package com.unicauca.smart_consumption.infrastructure.review.api.query;
+package com.unicauca.smart_consumption.infrastructure.review.api;
 
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.review.Review;
 import com.unicauca.smart_consumption.domain.review.ports.in.IReviewService;
 import com.unicauca.smart_consumption.infrastructure.pattern.dto.ReviewDto;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ReviewMapper;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/review")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class ReviewQueryWebApi {
+@Tag(name = "Review APIs", description = "Review APIs")
+public class ReviewWebApi {
     private final IReviewService reviewService;
     private final ReviewMapper reviewMapper;
 
