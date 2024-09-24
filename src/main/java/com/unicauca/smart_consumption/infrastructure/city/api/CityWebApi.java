@@ -1,10 +1,11 @@
-package com.unicauca.smart_consumption.infrastructure.city.api.query;
+package com.unicauca.smart_consumption.infrastructure.city.api;
 
 import com.unicauca.smart_consumption.domain.city.City;
 import com.unicauca.smart_consumption.domain.city.ports.in.ICityService;
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.infrastructure.pattern.dto.CityDto;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.CityMapper;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,10 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping(value = "/city-query")
+@RequestMapping(value = "/city")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class CityQueryWebApi {
+@Tag(name = "City Sync Backend APIs", description = "City Sync APIs")
+public class CityWebApi {
 
     private final ICityService cityService;
     private final CityMapper cityMapper;

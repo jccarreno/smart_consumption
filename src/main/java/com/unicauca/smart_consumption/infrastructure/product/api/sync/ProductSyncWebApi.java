@@ -1,5 +1,6 @@
 package com.unicauca.smart_consumption.infrastructure.product.api.sync;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import com.unicauca.smart_consumption.infrastructure.messages.MessageLoader;
 @RestController
 @RequestMapping("/sync")
 @RequiredArgsConstructor
+@Tag(name = "Product Sync Backend APIs", description = "Product Sync APIs")
 public class ProductSyncWebApi {
 
     private final ProductSyncService productSyncService;
@@ -22,6 +24,6 @@ public class ProductSyncWebApi {
     public ResponseDto<String> syncProducts() {
         productSyncService.syncProducts();
         return new ResponseDto<>(HttpStatus.CREATED.value(),
-            MessageLoader.getInstance().getMessage(MessagesConstant.IM002), "");
+            MessageLoader.getInstance().getMessage(MessagesConstant.IM002));
     }
 }

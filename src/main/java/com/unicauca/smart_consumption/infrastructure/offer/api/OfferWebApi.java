@@ -1,4 +1,4 @@
-package com.unicauca.smart_consumption.infrastructure.offer.api.query;
+package com.unicauca.smart_consumption.infrastructure.offer.api;
 
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.offer.Offer;
@@ -24,7 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/offer")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class OfferQueryWebApi {
+public class OfferWebApi {
 
     private final IOfferService offerService;
     private final OfferMapper offerMapper;

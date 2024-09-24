@@ -5,6 +5,7 @@ import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.product.ports.in.IProductQueryService;
 import com.unicauca.smart_consumption.infrastructure.pattern.dto.ProductDto;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductMapper;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/product-query")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@Tag(name = "Product Query Backend APIs", description = "Product Query APIs")
 public class ProductQueryWebApi {
 
   private final IProductQueryService productQueryService;
