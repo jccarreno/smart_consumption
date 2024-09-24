@@ -19,6 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDto {
+  private String id;
   private String name;
   private CategoryDto category;
   private Detail detail;

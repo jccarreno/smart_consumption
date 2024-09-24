@@ -13,6 +13,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class OfferDto {
+    private String id;
     private String description;
     private Period period;
     private ProductDto product;

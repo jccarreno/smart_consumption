@@ -23,7 +23,7 @@ public class ProductSyncWebApi {
     @PostMapping
     public ResponseDto<String> syncProducts() {
         productSyncService.syncProducts();
-        return new ResponseDto<>(HttpStatus.CREATED.value(),
+        return new ResponseDto<>(HttpStatus.valueOf(200).value(),
             MessageLoader.getInstance().getMessage(MessagesConstant.IM002));
     }
 }

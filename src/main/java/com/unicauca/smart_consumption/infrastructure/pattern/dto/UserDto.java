@@ -14,6 +14,7 @@ import java.util.List;
 @Setter
 @ToString
 public class UserDto {
+    private String id;
     private String username;
     private String name;
     private List<ReviewDto> reviews;
