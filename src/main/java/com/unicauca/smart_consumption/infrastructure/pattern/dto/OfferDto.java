@@ -1,6 +1,6 @@
 package com.unicauca.smart_consumption.infrastructure.pattern.dto;
 
-import com.unicauca.smart_consumption.domain.valueobject.Period;
+import com.unicauca.smart_consumption.domain.offer.Period;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

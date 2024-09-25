@@ -29,7 +29,7 @@ public class UserRepositoryAdapter implements IUserRepository {
                 .map(userEntity -> {
                     User domainUser = userJPAMapper.toDomain(userEntity);
                     domainUser.updateUser(user.getUsername(), user.getName(), user.getCity());
-                    domainUser.setReviews(user.getReviews());
+                   // domainUser.setReviews(user.getReviews());
                      domainUser.setWatchList(user.getWatchList());
                     UserJPAEntity updatedEntity = userJPAMapper.toTarget(domainUser);
                     userJPARepository.save(updatedEntity);

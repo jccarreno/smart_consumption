@@ -1,4 +1,4 @@
-package com.unicauca.smart_consumption.domain.valueobject;
+package com.unicauca.smart_consumption.domain.offer;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

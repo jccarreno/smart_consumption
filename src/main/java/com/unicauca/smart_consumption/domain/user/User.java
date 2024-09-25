@@ -2,7 +2,6 @@ package com.unicauca.smart_consumption.domain.user;
 
 import com.unicauca.smart_consumption.domain.city.City;
 import com.unicauca.smart_consumption.domain.product.Product;
-import com.unicauca.smart_consumption.domain.review.Review;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +20,7 @@ public class User {
     private String id;
     private String username;
     private String name;
-    private List<Review> reviews;
+   // private List<Review> reviews;
     private List<Product> watchList;
     private City city;
 
@@ -39,27 +38,27 @@ public class User {
         }
     }
 
-    public void addReview(Review review) {
-        if (Objects.nonNull(review) && !reviews.contains(review)) {
-            reviews.add(review);
-        }
-    }
+//    public void addReview(Review review) {
+//        if (Objects.nonNull(review) && !reviews.contains(review)) {
+//            reviews.add(review);
+//        }
+//    }
+//
+//    public void removeReview(Review review) {
+//        reviews.remove(review);
+//    }
+//
+//    public boolean hasReviewedProduct(Product product) {
+//        return reviews.stream().anyMatch(review -> review.isForProduct(product));
+//    }
+//
+//    public boolean hasPositiveReviews() {
+//        return reviews.stream().anyMatch(Review::isPositive);
+//    }
 
-    public void removeReview(Review review) {
-        reviews.remove(review);
-    }
-    
-    public boolean hasReviewedProduct(Product product) {
-        return reviews.stream().anyMatch(review -> review.isForProduct(product));
-    }
-
-    public boolean hasPositiveReviews() {
-        return reviews.stream().anyMatch(Review::isPositive);
-    }
-
-    public boolean isReviewAuthentic(Review review) {
-        return reviews.contains(review) && review.isAuthentic();
-    }
+//    public boolean isReviewAuthentic(Review review) {
+//        return reviews.contains(review) && review.isAuthentic();
+//    }
     
     public boolean addProductToWatchList(Product product)
     {

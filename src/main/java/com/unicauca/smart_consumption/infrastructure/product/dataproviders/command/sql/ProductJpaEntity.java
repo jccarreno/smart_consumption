@@ -1,6 +1,6 @@
 package com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql;
 
-import com.unicauca.smart_consumption.domain.valueobject.ProductStatus;
+import com.unicauca.smart_consumption.domain.product.ProductStatus;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.CategoryEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.DetailEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.SustainabilityCriteriaEmbeddable;
@@ -23,7 +23,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -57,7 +56,7 @@ public class ProductJpaEntity {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<ReviewJPAEntity> reviews = new ArrayList<>();
+    private List<ReviewJPAEntity> reviews;
 
     @ManyToMany(mappedBy = "products")
     private List<StoreJPAEntity> stores;

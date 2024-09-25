@@ -9,9 +9,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.unicauca.smart_consumption.domain.product.Product;
-import com.unicauca.smart_consumption.domain.valueobject.Category;
-import com.unicauca.smart_consumption.domain.valueobject.Detail;
-import com.unicauca.smart_consumption.domain.valueobject.SustainabilityCriteria;
+import com.unicauca.smart_consumption.domain.product.Category;
+import com.unicauca.smart_consumption.domain.product.Detail;
+import com.unicauca.smart_consumption.domain.product.SustainabilityCriteria;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductJpaEntityMapper;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql.ProductJpaCommandRepositoryAdapter;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql.ProductJpaEntity;

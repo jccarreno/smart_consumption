@@ -1,9 +1,10 @@
-package com.unicauca.smart_consumption.domain.valueobject;
+package com.unicauca.smart_consumption.domain.product;
 
-import java.util.Objects;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+
+import java.util.Objects;
 
 @Getter
 @EqualsAndHashCode

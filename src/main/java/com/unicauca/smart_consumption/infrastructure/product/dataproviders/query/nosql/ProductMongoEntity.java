@@ -1,6 +1,6 @@
 package com.unicauca.smart_consumption.infrastructure.product.dataproviders.query.nosql;
 
-import com.unicauca.smart_consumption.domain.valueobject.ProductStatus;
+import com.unicauca.smart_consumption.domain.product.ProductStatus;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.CategoryEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.DetailEmbeddable;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.common.SustainabilityCriteriaEmbeddable;

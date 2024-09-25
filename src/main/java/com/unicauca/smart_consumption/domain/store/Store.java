@@ -2,7 +2,7 @@ package com.unicauca.smart_consumption.domain.store;
 
 import com.unicauca.smart_consumption.domain.city.City;
 import com.unicauca.smart_consumption.domain.offer.Offer;
-import com.unicauca.smart_consumption.domain.valueobject.Category;
+import com.unicauca.smart_consumption.domain.product.Category;
 import com.unicauca.smart_consumption.domain.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

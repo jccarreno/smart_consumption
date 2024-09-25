@@ -2,7 +2,7 @@ package com.unicauca.smart_consumption.infrastructure.offer.dataproviders;
 
 import com.unicauca.smart_consumption.domain.offer.Offer;
 import com.unicauca.smart_consumption.domain.offer.ports.out.IOfferRepository;
-import com.unicauca.smart_consumption.domain.valueobject.Period;
+import com.unicauca.smart_consumption.domain.offer.Period;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.OfferJPAMapper;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductJpaEntityMapper;
 import jakarta.persistence.EntityNotFoundException;

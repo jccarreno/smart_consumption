@@ -1,4 +1,4 @@
-package com.unicauca.smart_consumption.domain.valueobject;
+package com.unicauca.smart_consumption.domain.product;
 
 import lombok.Getter;
 

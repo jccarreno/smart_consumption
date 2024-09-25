@@ -1,18 +1,13 @@
 package com.unicauca.smart_consumption.domain.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.unicauca.smart_consumption.domain.review.Review;
-import com.unicauca.smart_consumption.domain.valueobject.Category;
-import com.unicauca.smart_consumption.domain.valueobject.Detail;
-import com.unicauca.smart_consumption.domain.valueobject.ProductStatus;
-import com.unicauca.smart_consumption.domain.valueobject.SustainabilityCriteria;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @AllArgsConstructor
@@ -28,6 +23,7 @@ public class Product {
   private SustainabilityCriteria sustainabilityCriteria;
   private ProductStatus status;
   private double price;
+  @JsonBackReference
   private List<Review> reviews;
  // private List<Store> stores;
 
@@ -82,23 +78,23 @@ public class Product {
       this.price -= this.price * (percentage / 100);
     }
   }
-
-  public double calculateAverageRating() {
-    if (reviews.isEmpty()) {
-      return 0.0;
-    }
-    double sum = 0.0;
-    for (Review review : reviews) {
-      sum += review.getRating().getValue();
-    }
-    return sum / reviews.size();
-  }
-
-  public List<Review> getReviewsSortedByDate() {
-    List<Review> sortedReviews = new ArrayList<>(reviews);
-    sortedReviews.sort(Comparator.comparing(Review::getDate));
-    return sortedReviews;
-  }
+//
+//  public double calculateAverageRating() {
+//    if (reviews.isEmpty()) {
+//      return 0.0;
+//    }
+//    double sum = 0.0;
+//    for (Review review : reviews) {
+//      sum += review.getRating().getValue();
+//    }
+//    return sum / reviews.size();
+//  }
+//
+//  public List<Review> getReviewsSortedByDate() {
+//    List<Review> sortedReviews = new ArrayList<>(reviews);
+//    sortedReviews.sort(Comparator.comparing(Review::getDate));
+//    return sortedReviews;
+//  }
 
   public boolean isSustainable() {
     return this.sustainabilityCriteria.getSustainabilityScore() > 75;

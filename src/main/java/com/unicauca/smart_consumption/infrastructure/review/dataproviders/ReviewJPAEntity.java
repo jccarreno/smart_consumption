@@ -1,6 +1,6 @@
 package com.unicauca.smart_consumption.infrastructure.review.dataproviders;
 
-import com.unicauca.smart_consumption.domain.valueobject.Rating;
+import com.unicauca.smart_consumption.domain.product.Rating;
 import com.unicauca.smart_consumption.infrastructure.product.dataproviders.command.sql.ProductJpaEntity;
 import com.unicauca.smart_consumption.infrastructure.user.dataproviders.UserJPAEntity;
 import jakarta.persistence.Entity;
