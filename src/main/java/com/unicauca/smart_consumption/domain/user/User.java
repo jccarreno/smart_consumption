@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,7 +22,7 @@ public class User {
     private String username;
     private String name;
    // private List<Review> reviews;
-    private List<Product> watchList;
+    private ArrayList<Product> watchList;
     private City city;
 
     
