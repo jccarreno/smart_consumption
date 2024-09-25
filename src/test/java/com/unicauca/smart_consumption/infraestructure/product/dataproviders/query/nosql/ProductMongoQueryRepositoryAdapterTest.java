@@ -8,9 +8,9 @@ import static org.mockito.Mockito.when;
 
 import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.infrastructure.pattern.mapper.ProductJsonEntityMapper;
-import com.unicauca.smart_consumption.infrastructure.product.dataproviders.query.nosql.ProductMongoEntity;
-import com.unicauca.smart_consumption.infrastructure.product.dataproviders.query.nosql.ProductMongoQueryRepositoryAdapter;
-import com.unicauca.smart_consumption.infrastructure.product.dataproviders.query.nosql.ProductMongoRepository;
+import com.unicauca.smart_consumption.infrastructure.modules.product.dataproviders.query.nosql.ProductMongoEntity;
+import com.unicauca.smart_consumption.infrastructure.modules.product.dataproviders.query.nosql.ProductMongoQueryRepositoryAdapter;
+import com.unicauca.smart_consumption.infrastructure.modules.product.dataproviders.query.nosql.ProductMongoRepository;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;

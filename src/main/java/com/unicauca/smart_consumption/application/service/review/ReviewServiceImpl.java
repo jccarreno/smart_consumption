@@ -28,7 +28,8 @@ public class ReviewServiceImpl implements IReviewService {
 
     @Override
     public ResponseDto<Review> createReview(Review review, String userId, String productId) {
-        review.setUser(userRepository.findUserById(userId).get());
+        review.setUser(userRepository.findUserById(userId).orElseThrow(() -> new BusinessRuleException(HttpStatus.BAD_REQUEST.value(), MessagesConstant.EM002,
+                MessageLoader.getInstance().getMessage(MessagesConstant.EM002, userId))));
         review.setProduct(productQueryService.findProductById(productId).getData());
         Review createdReview = reviewRepository.createReview(review);
         return new ResponseDto<>(HttpStatus.CREATED.value(),

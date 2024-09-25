@@ -23,7 +23,6 @@ public class Product {
   private SustainabilityCriteria sustainabilityCriteria;
   private ProductStatus status;
   private double price;
-  @JsonBackReference
   private List<Review> reviews;
  // private List<Store> stores;
 

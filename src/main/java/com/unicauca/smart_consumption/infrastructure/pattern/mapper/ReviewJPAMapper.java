@@ -2,7 +2,7 @@ package com.unicauca.smart_consumption.infrastructure.pattern.mapper;
 
 
 import com.unicauca.smart_consumption.domain.review.Review;
-import com.unicauca.smart_consumption.infrastructure.review.dataproviders.ReviewJPAEntity;
+import com.unicauca.smart_consumption.infrastructure.modules.review.dataproviders.jpa.ReviewJPAEntity;
 import org.mapstruct.Mapper;
 
 /**

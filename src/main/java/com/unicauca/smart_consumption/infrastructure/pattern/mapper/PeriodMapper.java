@@ -1,7 +1,7 @@
 package com.unicauca.smart_consumption.infrastructure.pattern.mapper;
 
 import com.unicauca.smart_consumption.domain.offer.Period;
-import com.unicauca.smart_consumption.infrastructure.offer.dataproviders.PeriodEmbeddable;
+import com.unicauca.smart_consumption.infrastructure.modules.offer.dataproviders.jpa.PeriodEmbeddable;
 import org.mapstruct.Mapper;
 
 /**
