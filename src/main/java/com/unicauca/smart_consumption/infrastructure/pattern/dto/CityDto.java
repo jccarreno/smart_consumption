@@ -12,6 +12,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CityDto {
+    private String id;
     private String name;
     private String department;
 }

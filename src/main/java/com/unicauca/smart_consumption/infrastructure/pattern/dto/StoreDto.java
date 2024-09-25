@@ -14,8 +14,9 @@ import java.util.List;
 @Setter
 @ToString
 public class StoreDto {
+    private String id;
     private String name;
-    private List<ProductMongoDto> products;
+    private List<ProductDto> products;
     private List<OfferDto> offers;
     private CityDto city;
 }

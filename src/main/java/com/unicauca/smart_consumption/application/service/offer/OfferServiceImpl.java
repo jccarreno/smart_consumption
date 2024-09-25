@@ -1,11 +1,12 @@
 package com.unicauca.smart_consumption.application.service.offer;
 
-import com.unicauca.smart_consumption.application.service.EntityFinder.EntityFinder;
 import com.unicauca.smart_consumption.domain.common.ResponseDto;
 import com.unicauca.smart_consumption.domain.constant.MessagesConstant;
 import com.unicauca.smart_consumption.domain.offer.Offer;
 import com.unicauca.smart_consumption.domain.offer.ports.in.IOfferService;
 import com.unicauca.smart_consumption.domain.offer.ports.out.IOfferRepository;
+import com.unicauca.smart_consumption.domain.product.ports.in.IProductQueryService;
+import com.unicauca.smart_consumption.domain.store.ports.out.IStoreRepository;
 import com.unicauca.smart_consumption.infrastructure.exception.BusinessRuleException;
 import com.unicauca.smart_consumption.infrastructure.messages.MessageLoader;
 import lombok.RequiredArgsConstructor;
@@ -21,13 +22,14 @@ import java.util.List;
 public class OfferServiceImpl implements IOfferService {
 
     private final IOfferRepository offerRepository;
-    private final EntityFinder entityFinder;
+    private final IProductQueryService productQueryService;
+    private final IStoreRepository storeRepository;
     private final NotifyUsers notify;
 
     @Override
     public ResponseDto<Offer> createOffer(Offer offer, String storeId, String productId) {
-        offer.setProduct(entityFinder.findProductById(productId));
-        offer.setStore(entityFinder.findStoreById(storeId));
+        offer.setProduct(productQueryService.findProductById(productId).getData());
+        offer.setStore(storeRepository.findStoreById(storeId).get());
         offer.calculateDiscountedPrice();
         Offer createdOffer = offerRepository.createOffer(offer);
         notify.notifyUsers(createdOffer.getProduct());

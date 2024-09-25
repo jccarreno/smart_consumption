@@ -2,7 +2,7 @@ package com.unicauca.smart_consumption.domain.review;
 
 import com.unicauca.smart_consumption.domain.product.Product;
 import com.unicauca.smart_consumption.domain.user.User;
-import com.unicauca.smart_consumption.domain.valueobject.Rating;
+import com.unicauca.smart_consumption.domain.product.Rating;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,9 +25,6 @@ public class Review {
     private LocalDateTime date;
 
 
-    public boolean isAuthentic() {
-        return user.getReviews().contains(this);
-    }
 
     public boolean isPositive() {
         return this.rating == Rating.GOOD || this.rating == Rating.EXCELLENT;

@@ -2,7 +2,7 @@ package com.unicauca.smart_consumption.domain.store;
 
 import com.unicauca.smart_consumption.domain.city.City;
 import com.unicauca.smart_consumption.domain.offer.Offer;
-import com.unicauca.smart_consumption.domain.valueobject.Category;
+import com.unicauca.smart_consumption.domain.product.Category;
 import com.unicauca.smart_consumption.domain.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,9 +37,9 @@ public class Store {
         }
     }
 
-    public void addProduct(Product product) {
-        if (Objects.nonNull(product) && !products.contains(product)) {
-            products.add(product);
+    public void addProducts(List<Product> products) {
+        if (Objects.nonNull(products)) {
+           products.forEach(product -> this.products.add(product));
         }
     }
 

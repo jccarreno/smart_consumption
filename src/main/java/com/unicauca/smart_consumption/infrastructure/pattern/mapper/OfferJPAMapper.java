@@ -1,7 +1,7 @@
 package com.unicauca.smart_consumption.infrastructure.pattern.mapper;
 
 import com.unicauca.smart_consumption.domain.offer.Offer;
-import com.unicauca.smart_consumption.infrastructure.offer.dataproviders.OfferJPAEntity;
+import com.unicauca.smart_consumption.infrastructure.modules.offer.dataproviders.jpa.OfferJPAEntity;
 import org.mapstruct.Mapper;
 
 /**
